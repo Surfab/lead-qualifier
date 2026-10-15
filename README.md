@@ -1,4 +1,4 @@
-# claude-skills
+# lead-qualifier
 
 [🇮🇹 Italiano](#italiano) · [🇬🇧 English](#english)
 
@@ -6,17 +6,19 @@
 
 ## Italiano
 
-Skill per agenti AI, scritte da un Product Owner per problemi concreti di lavoro. Usano il formato aperto [Agent Skills](https://agentskills.io): funzionano in Claude e negli altri agenti compatibili. Le istruzioni delle skill sono in italiano.
+Skill per agenti AI che qualificano un potenziale cliente prima del primo contatto commerciale. Decidono se vale la pena investirci tempo, con regole esplicite e fonti verificabili. Le ha scritte un Product Owner per un problema concreto di vendita.
+
+Usano il formato aperto [Agent Skills](https://agentskills.io), quindi funzionano in Claude e negli altri agenti compatibili. Le istruzioni sono in italiano.
 
 ### 📦 Skill disponibili
 
 | Skill | Cosa fa | Versione |
 |---|---|---|
-| [lead-qualifier](plugins/lead-qualifier/skills/lead-qualifier/SKILL.md) | Decide se vale la pena contattare un lead: verifica tre canali pubblici e la reputazione, poi emette APPROVE, RISERVA o REJECT | 1.1.0 |
+| [lead-qualifier](plugins/lead-qualifier/skills/lead-qualifier/SKILL.md) | Verifica tre canali pubblici e la reputazione del lead, poi emette APPROVE, RISERVA o REJECT | 1.1.0 |
 
-### 🎯 lead-qualifier
+### 🎯 Il problema
 
-**Il problema.** Prima di scrivere a un potenziale cliente devi capire se è reale, attivo e affidabile. A mano servono 15-20 minuti e i criteri cambiano ogni volta. La skill fissa i criteri e li applica sempre allo stesso modo, con le fonti.
+Prima di scrivere a un potenziale cliente devi capire se è reale, attivo e affidabile. A mano servono 15-20 minuti e i criteri cambiano ogni volta. La skill fissa i criteri e li applica sempre allo stesso modo, con le fonti.
 
 ### 🧭 Come decide
 
@@ -38,7 +40,7 @@ Ogni canale (Twitter/X, YouTube, Trustpilot) riceve uno stato: ✅ positivo, ⚠
 **Claude Code, come plugin**
 
 ```text
-/plugin marketplace add Surfab/claude-skills
+/plugin marketplace add Surfab/lead-qualifier
 /plugin install lead-qualifier@surfab-skills
 ```
 
@@ -57,7 +59,7 @@ La skill lavora solo su informazioni pubbliche e pertinenti a una decisione comm
 ### 🗂 Struttura
 
 ```text
-claude-skills/
+lead-qualifier/
 ├── .claude-plugin/
 │   └── marketplace.json
 ├── plugins/
@@ -81,17 +83,19 @@ claude-skills/
 
 ## English
 
-Agent skills written by a Product Owner for real work problems. They use the open [Agent Skills](https://agentskills.io) format, so they run in Claude and in other compatible agents. The skill instructions are written in Italian.
+Agent skills that qualify a potential client before the first sales contact. They decide whether a lead is worth your time, with explicit rules and verifiable sources. Written by a Product Owner for a real sales problem.
+
+They use the open [Agent Skills](https://agentskills.io) format, so they run in Claude and in other compatible agents. The instructions are written in Italian.
 
 ### 📦 Available skills
 
 | Skill | What it does | Version |
 |---|---|---|
-| [lead-qualifier](plugins/lead-qualifier/skills/lead-qualifier/SKILL.md) | Decides whether a lead is worth contacting: checks three public channels and online reputation, then returns APPROVE, RISERVA or REJECT | 1.1.0 |
+| [lead-qualifier](plugins/lead-qualifier/skills/lead-qualifier/SKILL.md) | Checks three public channels and the lead's reputation, then returns APPROVE, RISERVA or REJECT | 1.1.0 |
 
-### 🎯 lead-qualifier
+### 🎯 The problem
 
-**The problem.** Before reaching out to a potential client you need to know whether they are real, active and reliable. By hand it takes 15-20 minutes, and the criteria change every time. The skill fixes the criteria and applies them the same way every time, with sources.
+Before reaching out to a potential client you need to know whether they are real, active and reliable. By hand it takes 15-20 minutes, and the criteria change every time. The skill fixes the criteria and applies them the same way every time, with sources.
 
 ### 🧭 How it decides
 
@@ -115,7 +119,7 @@ RISERVA is Italian for "with reservations": the lead is worth contacting, but on
 **Claude Code, as a plugin**
 
 ```text
-/plugin marketplace add Surfab/claude-skills
+/plugin marketplace add Surfab/lead-qualifier
 /plugin install lead-qualifier@surfab-skills
 ```
 
@@ -134,7 +138,7 @@ The skill only works with public information relevant to a business decision, an
 ### 🗂 Structure
 
 ```text
-claude-skills/
+lead-qualifier/
 ├── .claude-plugin/
 │   └── marketplace.json
 ├── plugins/
