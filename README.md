@@ -8,13 +8,13 @@
 
 Skill per agenti AI che qualificano un potenziale cliente prima del primo contatto commerciale. Decidono se vale la pena investirci tempo, con regole esplicite e fonti verificabili. Le ha scritte un Product Owner per un problema concreto di vendita.
 
-Usano il formato aperto [Agent Skills](https://agentskills.io), quindi funzionano in Claude e negli altri agenti compatibili. Le istruzioni sono in italiano.
+Usano il formato aperto [Agent Skills](https://agentskills.io), quindi funzionano in Claude e negli altri agenti compatibili. Le istruzioni sono in italiano. lead-qualifier si attiva anche con richieste in inglese.
 
 ### 📦 Skill disponibili
 
 | Skill | Per chi | Cosa verifica | Versione |
 |---|---|---|---|
-| [lead-qualifier](plugins/lead-qualifier/skills/lead-qualifier/SKILL.md) | Creator, founder, personal brand, aziende con pubblico consumer | Twitter/X, YouTube, Trustpilot e reputazione | 1.2.0 |
+| [lead-qualifier](plugins/lead-qualifier/skills/lead-qualifier/SKILL.md) | Creator, founder, personal brand, aziende con pubblico consumer | Twitter/X, YouTube, Trustpilot e reputazione | 1.2.1 |
 | [lead-qualifier-studi](plugins/lead-qualifier/skills/lead-qualifier-studi/SKILL.md) | Professionisti iscritti a un Ordine e studi professionali | LinkedIn, Albo/Ordine, pubblicazioni ed eventi e reputazione | 1.0.0 |
 
 Entrambe emettono APPROVE, RISERVA o REJECT, con le fonti e un next step.
@@ -109,13 +109,13 @@ lead-qualifier/
 
 Agent skills that qualify a potential client before the first sales contact. They decide whether a lead is worth your time, with explicit rules and verifiable sources. Written by a Product Owner for a real sales problem.
 
-They use the open [Agent Skills](https://agentskills.io) format, so they run in Claude and in other compatible agents. The instructions are written in Italian.
+They use the open [Agent Skills](https://agentskills.io) format, so they run in Claude and in other compatible agents. The instructions are written in Italian. lead-qualifier also triggers on requests written in English.
 
 ### 📦 Available skills
 
 | Skill | For | What it checks | Version |
 |---|---|---|---|
-| [lead-qualifier](plugins/lead-qualifier/skills/lead-qualifier/SKILL.md) | Creators, founders, personal brands, consumer-facing companies | Twitter/X, YouTube, Trustpilot and reputation | 1.2.0 |
+| [lead-qualifier](plugins/lead-qualifier/skills/lead-qualifier/SKILL.md) | Creators, founders, personal brands, consumer-facing companies | Twitter/X, YouTube, Trustpilot and reputation | 1.2.1 |
 | [lead-qualifier-studi](plugins/lead-qualifier/skills/lead-qualifier-studi/SKILL.md) | Members of Italian professional bodies (Ordini) and professional firms | LinkedIn, professional register (Albo), publications and events, and reputation | 1.0.0 |
 
 Both return APPROVE, RISERVA or REJECT, with sources and a next step.

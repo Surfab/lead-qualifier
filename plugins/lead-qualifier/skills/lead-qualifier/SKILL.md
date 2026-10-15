@@ -1,10 +1,10 @@
 ---
 name: lead-qualifier
-description: Qualifica un potenziale cliente (lead) prima del primo contatto commerciale. Verifica la presenza pubblica su tre canali obbligatori (Twitter/X, YouTube, Trustpilot), controlla la reputazione online e restituisce un verdetto APPROVE, RISERVA o REJECT con fonti e un next step. Usala quando l'utente chiede di analizzare un potenziale cliente, valutare un lead o verificare una persona o un'azienda prima di contattarla, per esempio "valuta questo lead" o "controlla [nome] prima che lo contatti". Non usarla per ricerche generiche su persone o aziende senza un contesto commerciale.
+description: Qualifica un potenziale cliente (lead) prima del primo contatto commerciale. Verifica la presenza pubblica su tre canali obbligatori (Twitter/X, YouTube, Trustpilot), controlla la reputazione online e restituisce un verdetto APPROVE, RISERVA o REJECT con fonti e un next step. Usala quando l'utente chiede di analizzare un potenziale cliente, valutare un lead o verificare una persona o un'azienda prima di contattarla, per esempio "valuta questo lead" o "controlla [nome] prima che lo contatti". Also use it when the user asks in English to qualify a lead, vet a prospect or check a person or company before sales outreach, for example "qualify this lead" or "is this prospect worth contacting". Non usarla per ricerche generiche su persone o aziende senza un contesto commerciale.
 license: MIT
 metadata:
   author: Fabrizio Quaglio Cotti
-  version: "1.2.0"
+  version: "1.2.1"
 ---
 
 # Lead Qualifier

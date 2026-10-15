@@ -1,6 +1,6 @@
 {
   "name": "lead-qualifier",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Qualifica un lead prima del primo contatto commerciale e restituisce APPROVE, RISERVA o REJECT con fonti. Due skill: lead-qualifier per creator, founder e aziende, lead-qualifier-studi per professionisti iscritti a un Ordine.",
   "author": {
     "name": "Fabrizio Quaglio Cotti",

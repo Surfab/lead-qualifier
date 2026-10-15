@@ -6,6 +6,10 @@
 
 ## Italiano
 
+### lead-qualifier 1.2.1 (2026-10-15)
+
+- **Attivazione anche in inglese.** La descrizione di lead-qualifier include frasi di attivazione in inglese, così la skill parte anche quando l'utente scrive in inglese. Le istruzioni restano in italiano.
+
 ### lead-qualifier 1.2.0 (2026-10-15)
 
 - **Nuova skill lead-qualifier-studi 1.0.0.** Variante per professionisti iscritti a un Ordine e studi professionali. Canali: LinkedIn, Albo/Ordine, pubblicazioni ed eventi, con disambiguazione degli omonimi.
@@ -30,6 +34,10 @@ Cambiamenti rispetto alla 1.0, usata in privato:
 ---
 
 ## English
+
+### lead-qualifier 1.2.1 (2026-10-15)
+
+- **English triggers.** The lead-qualifier description now includes English trigger phrases, so the skill also activates when the user writes in English. The instructions stay in Italian.
 
 ### lead-qualifier 1.2.0 (2026-10-15)
 
