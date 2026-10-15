@@ -4,7 +4,7 @@ description: Qualifica un potenziale cliente (lead) prima del primo contatto com
 license: MIT
 metadata:
   author: Fabrizio Quaglio Cotti
-  version: "1.1.0"
+  version: "1.2.0"
 ---
 
 # Lead Qualifier
@@ -62,7 +62,9 @@ La soglia di default è **2 canali ❌**. Si può cambiare, ma va dichiarata nel
 
 La regola dei canali è calibrata su creator, founder, personal brand e aziende con un pubblico consumer. Su PMI B2B, studi professionali o aziende senza canali social produce REJECT falsi.
 
-Se il lead rientra in questi casi:
+Se il lead è un professionista iscritto a un Ordine (commercialista, avvocato, notaio, consulente del lavoro) o uno studio professionale, usa la skill `lead-qualifier-studi`, che misura i canali giusti per quel segmento.
+
+Per gli altri casi fuori calibrazione:
 - se puoi, chiedi all'utente se procedere comunque;
 - se non puoi, procedi e scrivi in testa all'output: "Ambito: fuori calibrazione. Verdetto indicativo."
 

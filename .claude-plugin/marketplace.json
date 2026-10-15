@@ -9,7 +9,7 @@
     {
       "name": "lead-qualifier",
       "source": "./plugins/lead-qualifier",
-      "description": "Qualifica un lead prima del primo contatto commerciale e restituisce APPROVE, RISERVA o REJECT con fonti",
+      "description": "Qualifica un lead prima del primo contatto commerciale e restituisce APPROVE, RISERVA o REJECT con fonti. Include una variante per studi professionali",
       "category": "sales"
     }
   ]

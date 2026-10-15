@@ -6,6 +6,13 @@
 
 ## Italiano
 
+### lead-qualifier 1.2.0 (2026-10-15)
+
+- **Nuova skill lead-qualifier-studi 1.0.0.** Variante per professionisti iscritti a un Ordine e studi professionali. Canali: LinkedIn, Albo/Ordine, pubblicazioni ed eventi, con disambiguazione degli omonimi.
+- **Rispetto alla versione privata di lead-qualifier-studi:** tabella di decisione ordinata (vale la prima riga), reputazione che pesa sul verdetto, Albo ⚠️ distinto da ❌ (albo non consultabile contro iscrizione non trovata), contenzioso considerato solo quando lo studio è parte in causa, esempio fittizio, testo indipendente dall'autore e dallo strumento di ricerca.
+- **lead-qualifier 1.2.0.** Lo Step 0 rimanda a lead-qualifier-studi quando il lead è un professionista iscritto a un Ordine.
+- **Casi di test.** Otto casi per lead-qualifier-studi. Per lead-qualifier aggiunti il caso dei segnali minori, che mancava, e quello del passaggio a lead-qualifier-studi.
+
 ### lead-qualifier 1.1.0 (2026-10-15), prima versione pubblica
 
 Cambiamenti rispetto alla 1.0, usata in privato:
@@ -23,6 +30,13 @@ Cambiamenti rispetto alla 1.0, usata in privato:
 ---
 
 ## English
+
+### lead-qualifier 1.2.0 (2026-10-15)
+
+- **New skill: lead-qualifier-studi 1.0.0.** A variant for members of professional bodies (Ordini) and professional firms. Channels: LinkedIn, professional register (Albo/Ordine), publications and events, with disambiguation of people with the same name.
+- **Compared with the private version of lead-qualifier-studi:** ordered decision table (the first matching row wins), reputation affects the verdict, register ⚠️ separated from ❌ (register unavailable versus membership not found), litigation counted only when the firm itself is a party, fictional example, text independent of the author and of the search tool.
+- **lead-qualifier 1.2.0.** Step 0 hands over to lead-qualifier-studi when the lead is a member of a professional body.
+- **Test cases.** Eight cases for lead-qualifier-studi. For lead-qualifier, added the missing minor-signals case and the hand-over case.
 
 ### lead-qualifier 1.1.0 (2026-10-15), first public release
 

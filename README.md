@@ -12,17 +12,24 @@ Usano il formato aperto [Agent Skills](https://agentskills.io), quindi funzionan
 
 ### 📦 Skill disponibili
 
-| Skill | Cosa fa | Versione |
-|---|---|---|
-| [lead-qualifier](plugins/lead-qualifier/skills/lead-qualifier/SKILL.md) | Verifica tre canali pubblici e la reputazione del lead, poi emette APPROVE, RISERVA o REJECT | 1.1.0 |
+| Skill | Per chi | Cosa verifica | Versione |
+|---|---|---|---|
+| [lead-qualifier](plugins/lead-qualifier/skills/lead-qualifier/SKILL.md) | Creator, founder, personal brand, aziende con pubblico consumer | Twitter/X, YouTube, Trustpilot e reputazione | 1.2.0 |
+| [lead-qualifier-studi](plugins/lead-qualifier/skills/lead-qualifier-studi/SKILL.md) | Professionisti iscritti a un Ordine e studi professionali | LinkedIn, Albo/Ordine, pubblicazioni ed eventi e reputazione | 1.0.0 |
+
+Entrambe emettono APPROVE, RISERVA o REJECT, con le fonti e un next step.
 
 ### 🎯 Il problema
 
-Prima di scrivere a un potenziale cliente devi capire se è reale, attivo e affidabile. A mano servono 15-20 minuti e i criteri cambiano ogni volta. La skill fissa i criteri e li applica sempre allo stesso modo, con le fonti.
+Prima di scrivere a un potenziale cliente devi capire se è reale, attivo e affidabile. A mano servono 15-20 minuti e i criteri cambiano ogni volta. Le skill fissano i criteri e li applicano sempre allo stesso modo, con le fonti.
+
+I criteri giusti dipendono dal tipo di lead. Un commercialista quasi mai ha un canale YouTube, ma è iscritto a un Albo che si può verificare. Per questo le skill sono due.
 
 ### 🧭 Come decide
 
-Ogni canale (Twitter/X, YouTube, Trustpilot) riceve uno stato: ✅ positivo, ⚠️ non applicabile o incerto, ❌ assente o negativo. Poi vale la prima riga che corrisponde:
+Ogni canale riceve uno stato: ✅ positivo, ⚠️ non applicabile o incerto, ❌ assente o negativo. Poi vale la prima riga che corrisponde.
+
+**lead-qualifier**
 
 | Canali ❌ | Canali ⚠️ | Reputazione | Verdetto |
 |---|---|---|---|
@@ -33,28 +40,43 @@ Ogni canale (Twitter/X, YouTube, Trustpilot) riceve uno stato: ✅ positivo, ⚠
 | 0 | 0 | segnali minori | RISERVA |
 | 0 | 0 | nessun segnale negativo | APPROVE |
 
-**Cosa ottieni.** Una tabella canali, una scheda commerciale (credibilità, reputazione, budget probabile, rischio principale), il verdetto motivato e un next step di una riga. I [casi di test](examples/casi-di-test.md#italiano) mostrano un esempio per ogni verdetto.
+**lead-qualifier-studi**
+
+| Condizione | Verdetto |
+|---|---|
+| Albo ❌ (iscrizione non trovata o sanzione disciplinare pubblica) | REJECT |
+| 2 o più canali ❌ | REJECT |
+| Segnali critici da fonti terze | REJECT |
+| 1 canale ❌ | RISERVA |
+| 0 canali ❌ e 2 o più ⚠️ | RISERVA |
+| 0 canali ❌, al massimo 1 ⚠️, segnali minori | RISERVA |
+| 0 canali ❌, al massimo 1 ⚠️, nessun segnale negativo | APPROVE |
+
+Qui un solo ⚠️ non blocca l'APPROVE: per uno studio è normale avere solo la pagina LinkedIn dello studio e non quella personale. Prima di tutto la skill separa il lead dagli omonimi, incrociando studio, città e Ordine.
+
+**Cosa ottieni.** Una tabella canali, una scheda commerciale (credibilità, reputazione, budget probabile, rischio principale), il verdetto motivato e un next step di una riga. I [casi di test](examples/casi-di-test.md#italiano) mostrano un esempio per ogni riga delle due tabelle.
 
 ### 🚀 Installazione
 
-**Claude Code, come plugin**
+**Claude Code, come plugin.** Il plugin installa entrambe le skill.
 
 ```text
 /plugin marketplace add Surfab/lead-qualifier
 /plugin install lead-qualifier@surfab-skills
 ```
 
-**Solo la skill.** Copia la cartella `plugins/lead-qualifier/skills/lead-qualifier/` nella cartella delle skill del tuo agente. In Claude Code è `~/.claude/skills/`. Nelle app Claude puoi caricarla come zip tra le skill personalizzate.
+**Solo le skill.** Copia una o entrambe le cartelle dentro `plugins/lead-qualifier/skills/` nella cartella delle skill del tuo agente. In Claude Code è `~/.claude/skills/`. Nelle app Claude puoi caricarle come zip tra le skill personalizzate.
 
 ### 🔒 Limiti
 
-- È calibrata su creator, founder e personal brand. Con PMI B2B e studi professionali lo segnala, e il verdetto diventa solo indicativo.
-- Misura la presenza pubblica, non la solidità finanziaria.
+- lead-qualifier è calibrata su creator, founder e personal brand. Se il lead è un professionista iscritto a un Ordine rimanda a lead-qualifier-studi. Con le PMI B2B lo segnala, e il verdetto diventa solo indicativo.
+- lead-qualifier-studi è pensata per gli Ordini professionali italiani.
+- Le skill misurano la presenza pubblica, non la solidità finanziaria.
 - La qualità del verdetto dipende dalla ricerca web a disposizione dell'agente.
 
 ### 🛡 Uso responsabile
 
-La skill lavora solo su informazioni pubbliche e pertinenti a una decisione commerciale, ed esclude dati personali estranei al business. Il verdetto dice se investire tempo in un contatto, non giudica la persona.
+Le skill lavorano solo su informazioni pubbliche e pertinenti a una decisione commerciale, ed escludono dati personali estranei al business. Il verdetto dice se investire tempo in un contatto, non giudica la persona.
 
 ### 🗂 Struttura
 
@@ -67,7 +89,9 @@ lead-qualifier/
 │       ├── .claude-plugin/
 │       │   └── plugin.json
 │       └── skills/
-│           └── lead-qualifier/
+│           ├── lead-qualifier/
+│           │   └── SKILL.md
+│           └── lead-qualifier-studi/
 │               └── SKILL.md
 ├── examples/
 │   └── casi-di-test.md
@@ -89,17 +113,24 @@ They use the open [Agent Skills](https://agentskills.io) format, so they run in 
 
 ### 📦 Available skills
 
-| Skill | What it does | Version |
-|---|---|---|
-| [lead-qualifier](plugins/lead-qualifier/skills/lead-qualifier/SKILL.md) | Checks three public channels and the lead's reputation, then returns APPROVE, RISERVA or REJECT | 1.1.0 |
+| Skill | For | What it checks | Version |
+|---|---|---|---|
+| [lead-qualifier](plugins/lead-qualifier/skills/lead-qualifier/SKILL.md) | Creators, founders, personal brands, consumer-facing companies | Twitter/X, YouTube, Trustpilot and reputation | 1.2.0 |
+| [lead-qualifier-studi](plugins/lead-qualifier/skills/lead-qualifier-studi/SKILL.md) | Members of Italian professional bodies (Ordini) and professional firms | LinkedIn, professional register (Albo), publications and events, and reputation | 1.0.0 |
+
+Both return APPROVE, RISERVA or REJECT, with sources and a next step.
 
 ### 🎯 The problem
 
-Before reaching out to a potential client you need to know whether they are real, active and reliable. By hand it takes 15-20 minutes, and the criteria change every time. The skill fixes the criteria and applies them the same way every time, with sources.
+Before reaching out to a potential client you need to know whether they are real, active and reliable. By hand it takes 15-20 minutes, and the criteria change every time. The skills fix the criteria and apply them the same way every time, with sources.
+
+The right criteria depend on the type of lead. An accountant rarely has a YouTube channel, but they are listed in a professional register that can be checked. That is why there are two skills.
 
 ### 🧭 How it decides
 
-Each channel (Twitter/X, YouTube, Trustpilot) gets a status: ✅ positive, ⚠️ not applicable or uncertain, ❌ missing or negative. The first matching row wins:
+Each channel gets a status: ✅ positive, ⚠️ not applicable or uncertain, ❌ missing or negative. The first matching row wins.
+
+**lead-qualifier**
 
 | ❌ channels | ⚠️ channels | Reputation | Verdict |
 |---|---|---|---|
@@ -110,30 +141,45 @@ Each channel (Twitter/X, YouTube, Trustpilot) gets a status: ✅ positive, ⚠�
 | 0 | 0 | minor signals | RISERVA |
 | 0 | 0 | no negative signals | APPROVE |
 
+**lead-qualifier-studi**
+
+| Condition | Verdict |
+|---|---|
+| Register ❌ (membership not found or public disciplinary sanction) | REJECT |
+| 2 or more ❌ channels | REJECT |
+| Critical third-party signals | REJECT |
+| 1 ❌ channel | RISERVA |
+| 0 ❌ channels and 2 or more ⚠️ | RISERVA |
+| 0 ❌ channels, at most 1 ⚠️, minor signals | RISERVA |
+| 0 ❌ channels, at most 1 ⚠️, no negative signals | APPROVE |
+
+Here a single ⚠️ does not block APPROVE: it is normal for a firm to have only a company LinkedIn page and no personal profile. Before anything else, the skill separates the lead from people with the same name by matching firm, city and professional body.
+
 RISERVA is Italian for "with reservations": the lead is worth contacting, but only with a targeted approach.
 
-**What you get.** A channel table, a commercial profile (credibility, reputation, likely budget, main risk), the verdict with its reasoning and a one-line next step. The [test cases](examples/casi-di-test.md#english) show one example for each verdict.
+**What you get.** A channel table, a commercial profile (credibility, reputation, likely budget, main risk), the verdict with its reasoning and a one-line next step. The [test cases](examples/casi-di-test.md#english) show one example for each row of both tables.
 
 ### 🚀 Installation
 
-**Claude Code, as a plugin**
+**Claude Code, as a plugin.** The plugin installs both skills.
 
 ```text
 /plugin marketplace add Surfab/lead-qualifier
 /plugin install lead-qualifier@surfab-skills
 ```
 
-**Skill only.** Copy the `plugins/lead-qualifier/skills/lead-qualifier/` folder into your agent's skills folder. In Claude Code that is `~/.claude/skills/`. In the Claude apps you can upload it as a zip among your custom skills.
+**Skills only.** Copy one or both folders inside `plugins/lead-qualifier/skills/` into your agent's skills folder. In Claude Code that is `~/.claude/skills/`. In the Claude apps you can upload them as zips among your custom skills.
 
 ### 🔒 Limits
 
-- It is tuned for creators, founders and personal brands. With B2B SMEs and professional firms it flags the mismatch, and the verdict becomes indicative only.
-- It measures public presence, not financial soundness.
+- lead-qualifier is tuned for creators, founders and personal brands. When the lead is a member of a professional body it hands over to lead-qualifier-studi. With B2B SMEs it flags the mismatch, and the verdict becomes indicative only.
+- lead-qualifier-studi is designed for Italian professional bodies.
+- The skills measure public presence, not financial soundness.
 - Verdict quality depends on the web search available to the agent.
 
 ### 🛡 Responsible use
 
-The skill only works with public information relevant to a business decision, and leaves out personal data unrelated to the business. The verdict tells you whether a contact is worth your time. It does not judge the person.
+The skills only work with public information relevant to a business decision, and leave out personal data unrelated to the business. The verdict tells you whether a contact is worth your time. It does not judge the person.
 
 ### 🗂 Structure
 
@@ -146,7 +192,9 @@ lead-qualifier/
 │       ├── .claude-plugin/
 │       │   └── plugin.json
 │       └── skills/
-│           └── lead-qualifier/
+│           ├── lead-qualifier/
+│           │   └── SKILL.md
+│           └── lead-qualifier-studi/
 │               └── SKILL.md
 ├── examples/
 │   └── casi-di-test.md

@@ -1,4 +1,4 @@
-# Casi di test / Test cases: lead-qualifier
+# Casi di test / Test cases
 
 [🇮🇹 Italiano](#italiano) · [🇬🇧 English](#english)
 
@@ -6,7 +6,11 @@
 
 ## Italiano
 
-Sei lead fittizi, uno per ogni riga della tabella di decisione più il controllo di ambito. Servono a verificare che una modifica alla skill non cambi i verdetti attesi: dai all'agente lo scenario, confronta il verdetto con la colonna "Atteso".
+Lead fittizi, uno per ogni riga delle tabelle di decisione. Servono a verificare che una modifica alle skill non cambi i verdetti attesi: dai all'agente lo scenario, confronta il verdetto con la colonna "Atteso".
+
+### lead-qualifier
+
+Otto casi: uno per ogni riga della tabella, più i due controlli di ambito dello Step 0.
 
 | # | Scenario | Twitter/X | YouTube | Trustpilot | Reputazione | Atteso | Perché |
 |---|---|---|---|---|---|---|---|
@@ -15,20 +19,42 @@ Sei lead fittizi, uno per ogni riga della tabella di decisione più il controllo
 | 3 | Consulente con canale video forte | ❌ inattivo da 14 mesi | ✅ 60k, settimanale | ⚠️ non applicabile | Nessun segnale | **RISERVA** | 1 ❌, sotto la soglia di 2 |
 | 4 | E-commerce di integratori | ✅ 20k, attivo | ❌ assente | ❌ 2.1, lamentele su rimborsi | Non si verifica | **REJECT** | 2 ❌, scatta la regola, Step 3 saltato |
 | 5 | Info-marketer con numeri alti | ✅ 150k, attivo | ✅ 400k, settimanale | ✅ 3.8 | Segnali critici: inchiesta di una testata su rimborsi negati | **REJECT** | Segnali critici da fonte terza battono i canali positivi |
-| 6 | PMI manifatturiera B2B senza social | ❌ assente | ❌ assente | ⚠️ non applicabile | n/d | **Fuori calibrazione** | Step 0: chiedere all'utente prima di applicare la regola |
+| 6 | Coach con community a pagamento | ✅ 40k, attivo | ✅ 75k, settimanale | ✅ 4.1 | Segnali minori: un thread Reddit isolato critica i prezzi | **RISERVA** | 0 ❌, 0 ⚠️, ma segnali minori |
+| 7 | PMI manifatturiera B2B senza social | ❌ assente | ❌ assente | ⚠️ non applicabile | n/d | **Fuori calibrazione** | Step 0: chiedere all'utente prima di applicare la regola |
+| 8 | Studio associato di commercialisti | ❌ assente | ❌ assente | ⚠️ non applicabile | n/d | **Passa a lead-qualifier-studi** | Step 0: il segmento ha una skill dedicata |
+
+### lead-qualifier-studi
+
+Otto casi: uno per ogni riga della tabella, più quello che distingue questa variante dalla base (un solo ⚠️ non blocca l'APPROVE).
+
+| # | Scenario | LinkedIn | Albo / Ordine | Pubblicazioni ed eventi | Reputazione | Atteso | Perché |
+|---|---|---|---|---|---|---|---|
+| 1 | Avvocato con forte presenza online | ✅ profilo attivo | ❌ sanzione disciplinare pubblica | ✅ docenze recenti | Non si verifica | **REJECT** | Albo ❌ batte tutto il resto |
+| 2 | Piccolo studio senza presenza online | ❌ né profilo né pagina | ✅ iscrizione verificata | ❌ nessuna traccia | Non si verifica | **REJECT** | 2 ❌ |
+| 3 | Notaio con canali in ordine | ✅ profilo attivo | ✅ iscrizione verificata | ✅ articoli recenti | Segnali critici: inchiesta di stampa su un procedimento che riguarda lo studio | **REJECT** | Segnali critici da fonte terza |
+| 4 | Commercialista senza pubblicazioni | ✅ profilo attivo | ✅ iscrizione verificata | ❌ nessuna traccia | Nessun segnale | **RISERVA** | 1 ❌, sotto la soglia di 2 |
+| 5 | Consulente del lavoro | ⚠️ profilo fermo da 2 anni | ✅ iscrizione verificata | ⚠️ ultimo intervento nel 2019 | Nessun segnale | **RISERVA** | 0 ❌ e 2 ⚠️ |
+| 6 | Studio di consulenza fiscale | ✅ pagina e profili attivi | ✅ iscrizione verificata | ✅ convegno nel 2025 | Segnali minori: due recensioni negative isolate | **RISERVA** | Segnali minori |
+| 7 | Avvocata socia di uno studio d'affari | ✅ profilo attivo | ✅ iscrizione verificata | ✅ relatrice a un convegno nel 2025 | Nessun segnale | **APPROVE** | 0 ❌, 0 ⚠️ |
+| 8 | Commercialista in studio associato | ⚠️ solo pagina dello studio | ✅ iscrizione verificata | ✅ articolo su rivista di settore, 2024 | Nessun segnale | **APPROVE** | 0 ❌ e un solo ⚠️, che qui non blocca l'APPROVE |
 
 ### Cosa guardare oltre al verdetto
 
 - La tabella canali arriva prima di qualsiasi testo narrativo.
 - Ogni numero ha una fonte, e i dati auto-dichiarati sono marcati come tali.
-- Il blocco verdetto riporta "Soglia applicata" e la riga della tabella di decisione che è scattata.
+- Il blocco verdetto riporta la riga della tabella di decisione che è scattata (e in lead-qualifier anche "Soglia applicata").
+- In lead-qualifier-studi c'è sempre la riga degli omonimi scartati.
 - C'è sempre un next step di una riga.
 
 ---
 
 ## English
 
-Six fictional leads, one for each row of the decision table plus the scope check. Use them to verify that a change to the skill does not change the expected verdicts: give the agent the scenario and compare its verdict with the "Expected" column.
+Fictional leads, one for each row of the decision tables. Use them to verify that a change to the skills does not change the expected verdicts: give the agent the scenario and compare its verdict with the "Expected" column.
+
+### lead-qualifier
+
+Eight cases: one for each row of the table, plus the two Step 0 scope checks.
 
 | # | Scenario | Twitter/X | YouTube | Trustpilot | Reputation | Expected | Why |
 |---|---|---|---|---|---|---|---|
@@ -37,11 +63,29 @@ Six fictional leads, one for each row of the decision table plus the scope check
 | 3 | Consultant with a strong video channel | ❌ inactive for 14 months | ✅ 60k, weekly | ⚠️ not applicable | No signals | **RISERVA** | 1 ❌, below the threshold of 2 |
 | 4 | Supplements e-commerce | ✅ 20k, active | ❌ missing | ❌ 2.1, refund complaints | Not checked | **REJECT** | 2 ❌, rule triggered, Step 3 skipped |
 | 5 | Info-marketer with big numbers | ✅ 150k, active | ✅ 400k, weekly | ✅ 3.8 | Critical signals: press investigation into denied refunds | **REJECT** | Critical third-party signals outweigh positive channels |
-| 6 | B2B manufacturing SME with no social media | ❌ missing | ❌ missing | ⚠️ not applicable | n/a | **Out of scope** | Step 0: ask the user before applying the rule |
+| 6 | Coach with a paid community | ✅ 40k, active | ✅ 75k, weekly | ✅ 4.1 | Minor signals: one isolated Reddit thread criticises the prices | **RISERVA** | 0 ❌, 0 ⚠️, but minor signals |
+| 7 | B2B manufacturing SME with no social media | ❌ missing | ❌ missing | ⚠️ not applicable | n/a | **Out of scope** | Step 0: ask the user before applying the rule |
+| 8 | Associated firm of accountants | ❌ missing | ❌ missing | ⚠️ not applicable | n/a | **Hand over to lead-qualifier-studi** | Step 0: the segment has a dedicated skill |
+
+### lead-qualifier-studi
+
+Eight cases: one for each row of the table, plus the one that sets this variant apart from the base skill (a single ⚠️ does not block APPROVE).
+
+| # | Scenario | LinkedIn | Register (Albo / Ordine) | Publications and events | Reputation | Expected | Why |
+|---|---|---|---|---|---|---|---|
+| 1 | Lawyer with a strong online presence | ✅ active profile | ❌ public disciplinary sanction | ✅ recent teaching | Not checked | **REJECT** | Register ❌ overrides everything else |
+| 2 | Small firm with no online presence | ❌ no profile, no page | ✅ membership verified | ❌ no trace | Not checked | **REJECT** | 2 ❌ |
+| 3 | Notary with every channel in order | ✅ active profile | ✅ membership verified | ✅ recent articles | Critical signals: press investigation into proceedings involving the firm | **REJECT** | Critical third-party signals |
+| 4 | Accountant with no publications | ✅ active profile | ✅ membership verified | ❌ no trace | No signals | **RISERVA** | 1 ❌, below the threshold of 2 |
+| 5 | Labour consultant | ⚠️ profile inactive for 2 years | ✅ membership verified | ⚠️ last talk in 2019 | No signals | **RISERVA** | 0 ❌ and 2 ⚠️ |
+| 6 | Tax advisory firm | ✅ active page and profiles | ✅ membership verified | ✅ conference in 2025 | Minor signals: two isolated negative reviews | **RISERVA** | Minor signals |
+| 7 | Partner at a corporate law firm | ✅ active profile | ✅ membership verified | ✅ conference speaker in 2025 | No signals | **APPROVE** | 0 ❌, 0 ⚠️ |
+| 8 | Accountant at an associated firm | ⚠️ firm page only | ✅ membership verified | ✅ trade journal article, 2024 | No signals | **APPROVE** | 0 ❌ and a single ⚠️, which does not block APPROVE here |
 
 ### What to check beyond the verdict
 
 - The channel table comes before any narrative text.
 - Every number has a source, and self-reported data is marked as such.
-- The verdict block shows "Soglia applicata" (threshold applied) and the decision-table row that fired.
+- The verdict block shows the decision-table row that fired (and, in lead-qualifier, "Soglia applicata", the threshold applied).
+- lead-qualifier-studi always includes the line listing people with the same name that were ruled out.
 - There is always a one-line next step.
