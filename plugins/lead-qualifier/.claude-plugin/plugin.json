@@ -1,0 +1,12 @@
+{
+  "name": "lead-qualifier",
+  "version": "1.1.0",
+  "description": "Qualifica un lead prima del primo contatto commerciale: presenza su Twitter/X, YouTube e Trustpilot, reputazione online, verdetto APPROVE, RISERVA o REJECT con fonti.",
+  "author": {
+    "name": "Fabrizio Quaglio Cotti",
+    "url": "https://github.com/Surfab"
+  },
+  "repository": "https://github.com/Surfab/claude-skills",
+  "license": "MIT",
+  "keywords": ["sales", "lead-qualification", "due-diligence", "italiano"]
+}
