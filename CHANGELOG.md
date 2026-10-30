@@ -8,6 +8,12 @@
 
 I titoli indicano la versione del plugin. Le versioni delle singole skill sono nel testo.
 
+### Plugin 1.3.3 (2026-10-30)
+
+lead-qualifier-studi 1.1.3, dopo la prova su uno studio grande:
+
+- **Omonimi senza dati personali in tutto il report.** La regola della 1.1.2 valeva solo per la riga degli omonimi scartati; nelle Note era comparso il decesso di un omonimo. Ora vale per tutto il report: per avvisare di un omonimo basta una riga senza dati personali.
+
 ### Plugin 1.3.2 (2026-10-30)
 
 lead-qualifier-studi 1.1.2, dopo la seconda prova sullo stesso studio legale:
@@ -78,6 +84,12 @@ Cambiamenti rispetto alla 1.0, usata in privato:
 ## English
 
 Headings show the plugin version. Individual skill versions are given in the text.
+
+### Plugin 1.3.3 (2026-10-30)
+
+lead-qualifier-studi 1.1.3, after the trial on a large firm:
+
+- **No personal data about namesakes anywhere in the report.** The 1.1.2 rule only covered the line listing ruled-out namesakes; a namesake's death then appeared in the Notes. The rule now covers the whole report: a warning about a namesake takes one line with no personal data.
 
 ### Plugin 1.3.2 (2026-10-30)
 

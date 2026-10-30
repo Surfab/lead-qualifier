@@ -48,7 +48,7 @@ Dieci casi: uno per ogni riga della tabella, più quello che distingue questa va
 - Il blocco verdetto riporta la riga della tabella di decisione che è scattata (e in lead-qualifier anche "Soglia applicata").
 - In lead-qualifier-studi c'è sempre la riga degli omonimi scartati.
 - In lead-qualifier-studi l'output si apre con la riga "Sintesi", gli stati sono solo ✅, ⚠️ e ❌, i valori della tabella profilo sono quelli fissi del template, e se l'Albo è ⚠️ c'è il link per verificarlo a mano. Se l'Albo ✅ cambierebbe il verdetto, l'agente chiede la verifica prima di chiudere oppure riporta entrambi i verdetti.
-- Gli omonimi scartati sono descritti solo con professione e città. Se l'utente conosce già il lead, c'è la riga "Relazione esistente" dopo la sintesi e il next step è un contatto diretto. Il testo narrativo sta nelle Note, dopo il next step.
+- Gli omonimi scartati sono descritti solo con professione e città, e nessuna parte del report (Note comprese) riporta dati personali su di loro. Se l'utente conosce già il lead, c'è la riga "Relazione esistente" dopo la sintesi e il next step è un contatto diretto. Il testo narrativo sta nelle Note, dopo il next step.
 - Nessun aggregatore o directory è usato come fonte per il ✅ dell'Albo.
 - C'è sempre un next step di una riga.
 
@@ -98,6 +98,6 @@ Ten cases: one for each row of the table, plus the one that sets this variant ap
 - The verdict block shows the decision-table row that fired (and, in lead-qualifier, "Soglia applicata", the threshold applied).
 - lead-qualifier-studi always includes the line listing people with the same name that were ruled out.
 - In lead-qualifier-studi the output opens with the "Sintesi" (summary) line, statuses are only ✅, ⚠️ and ❌, the profile table uses the template's fixed values, and when the register is ⚠️ there is a link to check it by hand. If a ✅ register would change the verdict, the agent asks for the check before closing or reports both verdicts.
-- Ruled-out namesakes are described only by profession and city. If the user already knows the lead, there is a "Relazione esistente" (existing relationship) line after the summary and the next step is a direct contact. Narrative text goes in the Notes, after the next step.
+- Ruled-out namesakes are described only by profession and city, and no part of the report (Notes included) gives personal data about them. If the user already knows the lead, there is a "Relazione esistente" (existing relationship) line after the summary and the next step is a direct contact. Narrative text goes in the Notes, after the next step.
 - No aggregator or directory is used as the source for a ✅ register.
 - There is always a one-line next step.

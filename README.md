@@ -15,7 +15,7 @@ Usano il formato aperto [Agent Skills](https://agentskills.io), quindi funzionan
 | Skill | Per chi | Cosa verifica | Versione |
 |---|---|---|---|
 | [lead-qualifier](plugins/lead-qualifier/skills/lead-qualifier/SKILL.md) | Creator, founder, personal brand, aziende con pubblico consumer | Social principale (X, Instagram, TikTok o LinkedIn), YouTube, Trustpilot e reputazione | 1.3.0 |
-| [lead-qualifier-studi](plugins/lead-qualifier/skills/lead-qualifier-studi/SKILL.md) | Professionisti iscritti a un Ordine e studi professionali | LinkedIn, Albo/Ordine, pubblicazioni ed eventi e reputazione | 1.1.2 |
+| [lead-qualifier-studi](plugins/lead-qualifier/skills/lead-qualifier-studi/SKILL.md) | Professionisti iscritti a un Ordine e studi professionali | LinkedIn, Albo/Ordine, pubblicazioni ed eventi e reputazione | 1.1.3 |
 
 Entrambe emettono APPROVE, RISERVA o REJECT, con le fonti e un next step.
 
@@ -116,7 +116,7 @@ They use the open [Agent Skills](https://agentskills.io) format, so they run in 
 | Skill | For | What it checks | Version |
 |---|---|---|---|
 | [lead-qualifier](plugins/lead-qualifier/skills/lead-qualifier/SKILL.md) | Creators, founders, personal brands, consumer-facing companies | Main social (X, Instagram, TikTok or LinkedIn), YouTube, Trustpilot and reputation | 1.3.0 |
-| [lead-qualifier-studi](plugins/lead-qualifier/skills/lead-qualifier-studi/SKILL.md) | Members of Italian professional bodies (Ordini) and professional firms | LinkedIn, professional register (Albo), publications and events, and reputation | 1.1.2 |
+| [lead-qualifier-studi](plugins/lead-qualifier/skills/lead-qualifier-studi/SKILL.md) | Members of Italian professional bodies (Ordini) and professional firms | LinkedIn, professional register (Albo), publications and events, and reputation | 1.1.3 |
 
 Both return APPROVE, RISERVA or REJECT, with sources and a next step.
 
