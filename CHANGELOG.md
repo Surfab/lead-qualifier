@@ -8,6 +8,16 @@
 
 I titoli indicano la versione del plugin. Le versioni delle singole skill sono nel testo.
 
+### Plugin 1.3.2 (2026-10-30)
+
+lead-qualifier-studi 1.1.2, dopo la seconda prova sullo stesso studio legale:
+
+- **Omonimi senza dati personali.** Solo professione e città, niente nomi completi né altri dettagli su persone estranee al lead.
+- **Relazione esistente.** Se l'utente conosce già il lead, l'output lo dice in una riga dopo la sintesi e il next step diventa un contatto diretto. Il verdetto non cambia.
+- **Note in fondo.** Il testo narrativo va in una sezione Note facoltativa dopo il next step, mai prima delle tabelle.
+- **Albo decisivo.** Se l'Albo ✅ cambierebbe il verdetto, la skill chiede la verifica prima di chiudere, oppure riporta entrambi i verdetti.
+- **Aggregatori esclusi.** Directory e siti che ripubblicano dati dell'albo non valgono come fonte istituzionale.
+
 ### Plugin 1.3.1 (2026-10-30)
 
 lead-qualifier-studi 1.1.1, dopo una prova su uno studio legale reale:
@@ -68,6 +78,16 @@ Cambiamenti rispetto alla 1.0, usata in privato:
 ## English
 
 Headings show the plugin version. Individual skill versions are given in the text.
+
+### Plugin 1.3.2 (2026-10-30)
+
+lead-qualifier-studi 1.1.2, after the second trial on the same law firm:
+
+- **Namesakes without personal data.** Only profession and city, no full names or other details about people unrelated to the lead.
+- **Existing relationship.** If the user already knows the lead, the output says so in one line after the summary and the next step becomes a direct contact. The verdict does not change.
+- **Notes at the end.** Narrative text goes in an optional Notes section after the next step, never before the tables.
+- **Decisive register.** If a ✅ register would change the verdict, the skill asks for the check before closing, or reports both verdicts.
+- **Aggregators excluded.** Directories and sites that republish register data do not count as an institutional source.
 
 ### Plugin 1.3.1 (2026-10-30)
 

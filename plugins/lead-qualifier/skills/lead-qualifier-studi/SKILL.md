@@ -4,7 +4,7 @@ description: Qualifica un lead che è un professionista iscritto a un Ordine o u
 license: MIT
 metadata:
   author: Fabrizio Quaglio Cotti
-  version: "1.1.1"
+  version: "1.1.2"
 ---
 
 # Lead Qualifier Studi Professionali
@@ -73,7 +73,9 @@ Nomi comuni producono omonimi. Ancora l'identità a tre elementi: **studio, citt
 
 - Se l'utente fornisce la pagina profilo sul sito dello studio, leggila per prima: è il punto di ancoraggio.
 - Scarta ogni risultato che non combacia su almeno due dei tre elementi.
-- Nell'output elenca in una riga gli omonimi scartati, così l'utente sa che non sono stati confusi col lead.
+- Nell'output elenca in una riga gli omonimi scartati, così l'utente sa che non sono stati confusi col lead. Per ciascuno scrivi solo professione e città (es. "fotografo, Bologna"): niente nomi completi e nessun dato personale, perché sono persone estranee alla decisione commerciale.
+
+**Relazione esistente.** Controlla se l'utente conosce già il lead: lo dice nella richiesta, oppure risulta dal contesto o dalla memoria disponibile. Se sì, scrivilo in una riga subito dopo la sintesi. La relazione non cambia gli stati dei canali né il verdetto, cambia solo il next step: contatto diretto invece che a freddo.
 
 ### Step 1. I tre canali obbligatori
 
@@ -94,6 +96,8 @@ Cerca sempre tutti e tre con lo strumento di ricerca web disponibile, anche se i
 - ✅ iscrizione verificata su fonte istituzionale. Cariche nel Consiglio o in commissioni dell'Ordine sono un segnale in più
 - ⚠️ iscrizione dichiarata solo dal sito dello studio, con l'albo non consultabile né a livello territoriale né nazionale
 - Quando l'Albo resta ⚠️, scrivi nell'output il link alla pagina di ricerca iscritti, così l'utente lo verifica a mano in un minuto. Se l'utente conferma l'iscrizione, l'Albo diventa ✅ e ricalcoli il verdetto
+- Se l'Albo ✅ cambierebbe il verdetto, chiedi all'utente di verificarlo prima di chiudere il report. Se non puoi aspettare la risposta, riporta entrambi i verdetti: "con Albo ⚠️: [verdetto] · con Albo ✅: [verdetto]". Se il verdetto non cambia, scrivilo e vai avanti
+- Directory e aggregatori (siti di scraping, Pagine Gialle, elenchi commerciali) non sono fonti istituzionali, anche quando riportano dati presi dall'albo: non bastano per il ✅
 - ❌ iscrizione non trovata sull'albo, oppure sanzioni disciplinari pubbliche
 - Il sito dello studio è fonte auto-dichiarata, l'Ordine è fonte terza. Tienile separate nell'output.
 
@@ -138,6 +142,9 @@ Nell'ordine:
 4. Tabella profilo commerciale
 5. Verdetto
 6. Next step (una riga)
+7. Note (facoltative): contesto, dati mancanti per decidere, osservazioni sulla skill
+
+Se c'è una relazione esistente, la riga relativa va subito dopo la sintesi. Qualsiasi altro testo narrativo va nelle Note, mai prima delle tabelle.
 
 La riga di sintesi serve a chi legge di fretta. Non sostituisce il blocco Verdetto, che resta con il conteggio dei canali e la regola scattata.
 
@@ -157,6 +164,7 @@ La riga di sintesi serve a chi legge di fretta. Non sostituisce il blocco Verdet
 - Non gonfiare i segnali positivi per compensare quelli mancanti.
 - Non reinterpretare la tabella di decisione.
 - Non proporre un contatto se il verdetto è REJECT.
+- Non trattare come fonte istituzionale un sito che ripubblica dati dell'albo.
 
 ---
 
@@ -175,6 +183,8 @@ La riga di sintesi serve a chi legge di fretta. Non sostituisce il blocco Verdet
 
 Sintesi: [APPROVE / RISERVA / REJECT]. [Motivo principale in una frase.]
 
+Relazione esistente: [solo se c'è. Es. "sì, conoscenza personale dell'utente". Il next step sarà un contatto diretto.]
+
 ### Tabella canali
 
 | Canale | Stato | Dettaglio |
@@ -183,7 +193,7 @@ Sintesi: [APPROVE / RISERVA / REJECT]. [Motivo principale in una frase.]
 | Albo / Ordine | ✅ / ⚠️ / ❌ | Iscrizione, cariche, fonte istituzionale |
 | Pubblicazioni ed eventi | ✅ / ⚠️ / ❌ | Titolo o evento, anno, fonte |
 
-Omonimi scartati: [n, con descrizione di una parola ciascuno]
+Omonimi scartati: [n. Per ciascuno solo professione e città, es. "fotografo, Bologna"]
 
 ### Tabella profilo commerciale
 
@@ -226,7 +236,7 @@ Sintesi: RISERVA. Credenziali verificate dall'Ordine, ma potere di spesa non chi
 | Albo / Ordine | ✅ | Iscrizione e carica nel Consiglio verificate sul sito dell'Ordine territoriale |
 | Pubblicazioni ed eventi | ⚠️ | Un intervento da relatore a un convegno, data non verificabile. Nessun articolo trovato |
 
-Omonimi scartati: 3 (grafico, atleta, guida ambientale).
+Omonimi scartati: 3 (grafico, Torino; atleta, Roma; guida ambientale, Trento).
 
 | Aspetto | Segnale |
 |---|---|
