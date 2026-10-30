@@ -8,14 +8,14 @@
 
 Skill per agenti AI che qualificano un potenziale cliente prima del primo contatto commerciale. Decidono se vale la pena investirci tempo, con regole esplicite e fonti verificabili. Le ha scritte un Product Owner per un problema concreto di vendita.
 
-Usano il formato aperto [Agent Skills](https://agentskills.io), quindi funzionano in Claude e negli altri agenti compatibili. Le istruzioni sono in italiano. lead-qualifier si attiva anche con richieste in inglese.
+Usano il formato aperto [Agent Skills](https://agentskills.io), quindi funzionano in Claude e negli altri agenti compatibili. Le istruzioni sono in italiano. Entrambe si attivano anche con richieste in inglese.
 
 ### 📦 Skill disponibili
 
 | Skill | Per chi | Cosa verifica | Versione |
 |---|---|---|---|
-| [lead-qualifier](plugins/lead-qualifier/skills/lead-qualifier/SKILL.md) | Creator, founder, personal brand, aziende con pubblico consumer | Twitter/X, YouTube, Trustpilot e reputazione | 1.2.1 |
-| [lead-qualifier-studi](plugins/lead-qualifier/skills/lead-qualifier-studi/SKILL.md) | Professionisti iscritti a un Ordine e studi professionali | LinkedIn, Albo/Ordine, pubblicazioni ed eventi e reputazione | 1.0.0 |
+| [lead-qualifier](plugins/lead-qualifier/skills/lead-qualifier/SKILL.md) | Creator, founder, personal brand, aziende con pubblico consumer | Social principale (X, Instagram, TikTok o LinkedIn), YouTube, Trustpilot e reputazione | 1.3.0 |
+| [lead-qualifier-studi](plugins/lead-qualifier/skills/lead-qualifier-studi/SKILL.md) | Professionisti iscritti a un Ordine e studi professionali | LinkedIn, Albo/Ordine, pubblicazioni ed eventi e reputazione | 1.1.0 |
 
 Entrambe emettono APPROVE, RISERVA o REJECT, con le fonti e un next step.
 
@@ -27,7 +27,7 @@ I criteri giusti dipendono dal tipo di lead. Un commercialista quasi mai ha un c
 
 ### 🧭 Come decide
 
-Ogni canale riceve uno stato: ✅ positivo, ⚠️ non applicabile o incerto, ❌ assente o negativo. Poi vale la prima riga che corrisponde.
+Ogni canale riceve uno stato: ✅ positivo, ⚠️ non applicabile o incerto, ❌ assente o negativo. Poi vale la prima riga che corrisponde. Le righe di lead-qualifier sono scritte con la soglia di default (2 canali ❌), che l'utente può cambiare prima dell'analisi.
 
 **lead-qualifier**
 
@@ -45,14 +45,14 @@ Ogni canale riceve uno stato: ✅ positivo, ⚠️ non applicabile o incerto, �
 | Condizione | Verdetto |
 |---|---|
 | Albo ❌ (iscrizione non trovata o sanzione disciplinare pubblica) | REJECT |
-| 2 o più canali ❌ | REJECT |
+| 2 canali ❌ e Albo ⚠️ | REJECT |
 | Segnali critici da fonti terze | REJECT |
-| 1 canale ❌ | RISERVA |
+| 1 o 2 canali ❌ | RISERVA |
 | 0 canali ❌ e 2 o più ⚠️ | RISERVA |
 | 0 canali ❌, al massimo 1 ⚠️, segnali minori | RISERVA |
 | 0 canali ❌, al massimo 1 ⚠️, nessun segnale negativo | APPROVE |
 
-Qui un solo ⚠️ non blocca l'APPROVE: per uno studio è normale avere solo la pagina LinkedIn dello studio e non quella personale. Prima di tutto la skill separa il lead dagli omonimi, incrociando studio, città e Ordine.
+Qui un solo ⚠️ non blocca l'APPROVE: per uno studio è normale avere solo la pagina LinkedIn dello studio e non quella personale. E l'Albo pesa più della visibilità: un piccolo studio con iscrizione verificata ma senza LinkedIn né pubblicazioni è RISERVA, non REJECT. Prima di tutto la skill separa il lead dagli omonimi, incrociando studio, città e Ordine.
 
 **Cosa ottieni.** Una tabella canali, una scheda commerciale (credibilità, reputazione, budget probabile, rischio principale), il verdetto motivato e un next step di una riga. I [casi di test](examples/casi-di-test.md#italiano) mostrano un esempio per ogni riga delle due tabelle.
 
@@ -76,7 +76,7 @@ Qui un solo ⚠️ non blocca l'APPROVE: per uno studio è normale avere solo la
 
 ### 🛡 Uso responsabile
 
-Le skill lavorano solo su informazioni pubbliche e pertinenti a una decisione commerciale, ed escludono dati personali estranei al business. Il verdetto dice se investire tempo in un contatto, non giudica la persona.
+Le skill lavorano solo su informazioni pubbliche e pertinenti a una decisione commerciale, ed escludono dati personali estranei al business. Al primo contatto va detto al lead da dove vengono i suoi dati (GDPR, art. 14). Il verdetto dice se investire tempo in un contatto, non giudica la persona.
 
 ### 🗂 Struttura
 
@@ -109,14 +109,14 @@ lead-qualifier/
 
 Agent skills that qualify a potential client before the first sales contact. They decide whether a lead is worth your time, with explicit rules and verifiable sources. Written by a Product Owner for a real sales problem.
 
-They use the open [Agent Skills](https://agentskills.io) format, so they run in Claude and in other compatible agents. The instructions are written in Italian. lead-qualifier also triggers on requests written in English.
+They use the open [Agent Skills](https://agentskills.io) format, so they run in Claude and in other compatible agents. The instructions are written in Italian. Both also trigger on requests written in English.
 
 ### 📦 Available skills
 
 | Skill | For | What it checks | Version |
 |---|---|---|---|
-| [lead-qualifier](plugins/lead-qualifier/skills/lead-qualifier/SKILL.md) | Creators, founders, personal brands, consumer-facing companies | Twitter/X, YouTube, Trustpilot and reputation | 1.2.1 |
-| [lead-qualifier-studi](plugins/lead-qualifier/skills/lead-qualifier-studi/SKILL.md) | Members of Italian professional bodies (Ordini) and professional firms | LinkedIn, professional register (Albo), publications and events, and reputation | 1.0.0 |
+| [lead-qualifier](plugins/lead-qualifier/skills/lead-qualifier/SKILL.md) | Creators, founders, personal brands, consumer-facing companies | Main social (X, Instagram, TikTok or LinkedIn), YouTube, Trustpilot and reputation | 1.3.0 |
+| [lead-qualifier-studi](plugins/lead-qualifier/skills/lead-qualifier-studi/SKILL.md) | Members of Italian professional bodies (Ordini) and professional firms | LinkedIn, professional register (Albo), publications and events, and reputation | 1.1.0 |
 
 Both return APPROVE, RISERVA or REJECT, with sources and a next step.
 
@@ -128,7 +128,7 @@ The right criteria depend on the type of lead. An accountant rarely has a YouTub
 
 ### 🧭 How it decides
 
-Each channel gets a status: ✅ positive, ⚠️ not applicable or uncertain, ❌ missing or negative. The first matching row wins.
+Each channel gets a status: ✅ positive, ⚠️ not applicable or uncertain, ❌ missing or negative. The first matching row wins. The lead-qualifier rows assume the default threshold (2 ❌ channels), which the user can change before the analysis.
 
 **lead-qualifier**
 
@@ -146,14 +146,14 @@ Each channel gets a status: ✅ positive, ⚠️ not applicable or uncertain, �
 | Condition | Verdict |
 |---|---|
 | Register ❌ (membership not found or public disciplinary sanction) | REJECT |
-| 2 or more ❌ channels | REJECT |
+| 2 ❌ channels and register ⚠️ | REJECT |
 | Critical third-party signals | REJECT |
-| 1 ❌ channel | RISERVA |
+| 1 or 2 ❌ channels | RISERVA |
 | 0 ❌ channels and 2 or more ⚠️ | RISERVA |
 | 0 ❌ channels, at most 1 ⚠️, minor signals | RISERVA |
 | 0 ❌ channels, at most 1 ⚠️, no negative signals | APPROVE |
 
-Here a single ⚠️ does not block APPROVE: it is normal for a firm to have only a company LinkedIn page and no personal profile. Before anything else, the skill separates the lead from people with the same name by matching firm, city and professional body.
+Here a single ⚠️ does not block APPROVE: it is normal for a firm to have only a company LinkedIn page and no personal profile. And the register outweighs visibility: a small firm with verified membership but no LinkedIn and no publications gets RISERVA, not REJECT. Before anything else, the skill separates the lead from people with the same name by matching firm, city and professional body.
 
 RISERVA is Italian for "with reservations": the lead is worth contacting, but only with a targeted approach.
 
@@ -179,7 +179,7 @@ RISERVA is Italian for "with reservations": the lead is worth contacting, but on
 
 ### 🛡 Responsible use
 
-The skills only work with public information relevant to a business decision, and leave out personal data unrelated to the business. The verdict tells you whether a contact is worth your time. It does not judge the person.
+The skills only work with public information relevant to a business decision, and leave out personal data unrelated to the business. At first contact, tell the lead where their data came from (GDPR, Art. 14). The verdict tells you whether a contact is worth your time. It does not judge the person.
 
 ### 🗂 Structure
 
