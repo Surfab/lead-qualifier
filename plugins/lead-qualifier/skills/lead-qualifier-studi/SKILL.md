@@ -4,7 +4,7 @@ description: Qualifica un lead che è un professionista iscritto a un Ordine o u
 license: MIT
 metadata:
   author: Fabrizio Quaglio Cotti
-  version: "1.1.2"
+  version: "1.1.3"
 ---
 
 # Lead Qualifier Studi Professionali
@@ -74,6 +74,7 @@ Nomi comuni producono omonimi. Ancora l'identità a tre elementi: **studio, citt
 - Se l'utente fornisce la pagina profilo sul sito dello studio, leggila per prima: è il punto di ancoraggio.
 - Scarta ogni risultato che non combacia su almeno due dei tre elementi.
 - Nell'output elenca in una riga gli omonimi scartati, così l'utente sa che non sono stati confusi col lead. Per ciascuno scrivi solo professione e città (es. "fotografo, Bologna"): niente nomi completi e nessun dato personale, perché sono persone estranee alla decisione commerciale.
+- La regola vale per tutto il report, Note comprese. Se serve avvisare l'utente di un omonimo che crea confusione, basta una riga senza dati personali (es. "Attenzione: un omonimo imprenditore, non legato allo studio, compare spesso nei risultati").
 
 **Relazione esistente.** Controlla se l'utente conosce già il lead: lo dice nella richiesta, oppure risulta dal contesto o dalla memoria disponibile. Se sì, scrivilo in una riga subito dopo la sintesi. La relazione non cambia gli stati dei canali né il verdetto, cambia solo il next step: contatto diretto invece che a freddo.
 
@@ -161,6 +162,7 @@ La riga di sintesi serve a chi legge di fretta. Non sostituisce il blocco Verdet
 
 **Da evitare**
 - Non scambiare un omonimo per il lead.
+- Non riportare in nessuna parte del report, Note comprese, dati personali di omonimi o di altre persone estranee al lead: decesso, vicende private, salute, famiglia.
 - Non gonfiare i segnali positivi per compensare quelli mancanti.
 - Non reinterpretare la tabella di decisione.
 - Non proporre un contatto se il verdetto è REJECT.
