@@ -8,6 +8,16 @@
 
 I titoli indicano la versione del plugin. Le versioni delle singole skill sono nel testo.
 
+### Plugin 1.3.4 (2026-10-30)
+
+lead-qualifier 1.3.1:
+
+- **Omonimi anche nella skill base.** Nuovo ancoraggio dell'identità (azienda o progetto, handle, area geografica) e stessa regola di lead-qualifier-studi 1.1.3: nessun dato personale sugli omonimi in tutto il report. Prima la skill base non trattava gli omonimi.
+
+Entrambe:
+
+- **Casi di test.** Nuovo caso dell'omonimo con una vicenda privata in evidenza, uno per skill.
+
 ### Plugin 1.3.3 (2026-10-30)
 
 lead-qualifier-studi 1.1.3, dopo la prova su uno studio grande:
@@ -84,6 +94,16 @@ Cambiamenti rispetto alla 1.0, usata in privato:
 ## English
 
 Headings show the plugin version. Individual skill versions are given in the text.
+
+### Plugin 1.3.4 (2026-10-30)
+
+lead-qualifier 1.3.1:
+
+- **Namesakes in the base skill too.** New identity anchor (company or project, handle, area) and the same rule as lead-qualifier-studi 1.1.3: no personal data about namesakes anywhere in the report. The base skill did not handle namesakes before.
+
+Both:
+
+- **Test cases.** New case of a namesake whose private story ranks high in the results, one per skill.
 
 ### Plugin 1.3.3 (2026-10-30)
 

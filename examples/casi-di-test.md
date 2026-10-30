@@ -10,7 +10,7 @@ Lead fittizi, uno per ogni riga delle tabelle di decisione. Servono a verificare
 
 ### lead-qualifier
 
-Nove casi: uno per ogni riga della tabella, i due controlli di ambito dello Step 0 e quello del founder B2B attivo solo su LinkedIn.
+Dieci casi: uno per ogni riga della tabella, i due controlli di ambito dello Step 0, quello del founder B2B attivo solo su LinkedIn e quello dell'omonimo noto.
 
 | # | Scenario | Social principale | YouTube | Trustpilot | Reputazione | Atteso | Perché |
 |---|---|---|---|---|---|---|---|
@@ -23,10 +23,11 @@ Nove casi: uno per ogni riga della tabella, i due controlli di ambito dello Step
 | 7 | PMI manifatturiera B2B senza social | ❌ assente | ❌ assente | ⚠️ non applicabile | n/d | **Fuori calibrazione** | Step 0: chiedere all'utente prima di applicare la regola |
 | 8 | Studio associato di commercialisti | ❌ assente | ❌ assente | ⚠️ non applicabile | n/d | **Passa a lead-qualifier-studi** | Step 0: il segmento ha una skill dedicata |
 | 9 | Founder di un SaaS B2B, attivo solo su LinkedIn | ✅ LinkedIn 25k, attivo. Assente su X | ⚠️ assente, video non atteso per un SaaS B2B | ⚠️ non applicabile (B2B) | Nessun segnale | **RISERVA** | 0 ❌ e 2 ⚠️. Prima della 1.3.0 era REJECT per l'assenza su X e YouTube |
+| 10 | Creator con nome comune; un omonimo noto ha una vicenda privata in evidenza nei risultati | ✅ Instagram 60k, attivo | ✅ 30k, settimanale | ✅ 4.2 su 300 recensioni | Nessun segnale sul lead | **APPROVE** | L'omonimo è scartato con l'ancoraggio (azienda, handle, area). Il report lo cita al massimo in una riga senza dati personali, e la sua vicenda non compare da nessuna parte |
 
 ### lead-qualifier-studi
 
-Dieci casi: uno per ogni riga della tabella, più quello che distingue questa variante dalla base (un solo ⚠️ non blocca l'APPROVE), quello del piccolo studio con Albo verificato e quello del LinkedIn trovato ma non leggibile.
+Undici casi: uno per ogni riga della tabella, più quello che distingue questa variante dalla base (un solo ⚠️ non blocca l'APPROVE), quello del piccolo studio con Albo verificato, quello del LinkedIn trovato ma non leggibile e quello dell'omonimo con una notizia privata.
 
 | # | Scenario | LinkedIn | Albo / Ordine | Pubblicazioni ed eventi | Reputazione | Atteso | Perché |
 |---|---|---|---|---|---|---|---|
@@ -40,13 +41,14 @@ Dieci casi: uno per ogni riga della tabella, più quello che distingue questa va
 | 8 | Commercialista in studio associato | ⚠️ solo pagina dello studio | ✅ iscrizione verificata | ✅ articolo su rivista di settore, 2024 | Nessun segnale | **APPROVE** | 0 ❌ e un solo ⚠️, che qui non blocca l'APPROVE |
 | 9 | Piccolo studio di provincia senza presenza online | ❌ né profilo né pagina | ✅ iscrizione verificata | ❌ nessuna traccia | Nessun segnale | **RISERVA** | 2 ❌ ma Albo ✅: l'iscrizione verificata pesa più della visibilità. Contatto via email o telefono dello studio |
 | 10 | Avvocato con LinkedIn dietro login | ⚠️ profilo presente negli snippet ma non leggibile senza login | ✅ iscrizione verificata | ✅ docenza nel 2025 | Nessun segnale | **APPROVE** | Non leggibile vale ⚠️, non ❌. 0 ❌ e un solo ⚠️ |
+| 11 | Socio di uno studio grande; un omonimo ha un necrologio tra i primi risultati | ✅ profilo attivo | ✅ iscrizione verificata | ✅ convegno nel 2025 | Nessun segnale | **APPROVE** | L'omonimo compare solo nella riga degli omonimi scartati (professione e città). Il necrologio non compare né lì né nelle Note |
 
 ### Cosa guardare oltre al verdetto
 
 - La tabella canali arriva prima di qualsiasi testo narrativo.
 - Ogni numero ha una fonte, e i dati auto-dichiarati sono marcati come tali.
 - Il blocco verdetto riporta la riga della tabella di decisione che è scattata (e in lead-qualifier anche "Soglia applicata").
-- In lead-qualifier-studi c'è sempre la riga degli omonimi scartati.
+- In lead-qualifier-studi c'è sempre la riga degli omonimi scartati. In lead-qualifier gli omonimi non compaiono, o al massimo in una riga di avviso senza dati personali.
 - In lead-qualifier-studi l'output si apre con la riga "Sintesi", gli stati sono solo ✅, ⚠️ e ❌, i valori della tabella profilo sono quelli fissi del template, e se l'Albo è ⚠️ c'è il link per verificarlo a mano. Se l'Albo ✅ cambierebbe il verdetto, l'agente chiede la verifica prima di chiudere oppure riporta entrambi i verdetti.
 - Gli omonimi scartati sono descritti solo con professione e città, e nessuna parte del report (Note comprese) riporta dati personali su di loro. Se l'utente conosce già il lead, c'è la riga "Relazione esistente" dopo la sintesi e il next step è un contatto diretto. Il testo narrativo sta nelle Note, dopo il next step.
 - Nessun aggregatore o directory è usato come fonte per il ✅ dell'Albo.
@@ -60,7 +62,7 @@ Fictional leads, one for each row of the decision tables. Use them to verify tha
 
 ### lead-qualifier
 
-Nine cases: one for each row of the table, the two Step 0 scope checks, and the B2B founder who is active only on LinkedIn.
+Ten cases: one for each row of the table, the two Step 0 scope checks, the B2B founder who is active only on LinkedIn, and the well-known namesake.
 
 | # | Scenario | Main social | YouTube | Trustpilot | Reputation | Expected | Why |
 |---|---|---|---|---|---|---|---|
@@ -73,10 +75,11 @@ Nine cases: one for each row of the table, the two Step 0 scope checks, and the 
 | 7 | B2B manufacturing SME with no social media | ❌ missing | ❌ missing | ⚠️ not applicable | n/a | **Out of scope** | Step 0: ask the user before applying the rule |
 | 8 | Associated firm of accountants | ❌ missing | ❌ missing | ⚠️ not applicable | n/a | **Hand over to lead-qualifier-studi** | Step 0: the segment has a dedicated skill |
 | 9 | Founder of a B2B SaaS, active only on LinkedIn | ✅ LinkedIn 25k, active. Not on X | ⚠️ missing, video not expected for a B2B SaaS | ⚠️ not applicable (B2B) | No signals | **RISERVA** | 0 ❌ and 2 ⚠️. Before 1.3.0 it was REJECT because of no X and no YouTube |
+| 10 | Creator with a common name; a well-known namesake's private story ranks high in the results | ✅ Instagram 60k, active | ✅ 30k, weekly | ✅ 4.2 from 300 reviews | No signals about the lead | **APPROVE** | The namesake is ruled out by the anchor (company, handle, area). The report mentions them at most in one line with no personal data, and their story appears nowhere |
 
 ### lead-qualifier-studi
 
-Ten cases: one for each row of the table, plus the one that sets this variant apart from the base skill (a single ⚠️ does not block APPROVE), the small firm with a verified register entry, and the LinkedIn profile that is found but cannot be read.
+Eleven cases: one for each row of the table, plus the one that sets this variant apart from the base skill (a single ⚠️ does not block APPROVE), the small firm with a verified register entry, the LinkedIn profile that is found but cannot be read, and the namesake with private news.
 
 | # | Scenario | LinkedIn | Register (Albo / Ordine) | Publications and events | Reputation | Expected | Why |
 |---|---|---|---|---|---|---|---|
@@ -90,13 +93,14 @@ Ten cases: one for each row of the table, plus the one that sets this variant ap
 | 8 | Accountant at an associated firm | ⚠️ firm page only | ✅ membership verified | ✅ trade journal article, 2024 | No signals | **APPROVE** | 0 ❌ and a single ⚠️, which does not block APPROVE here |
 | 9 | Small provincial firm with no online presence | ❌ no profile, no page | ✅ membership verified | ❌ no trace | No signals | **RISERVA** | 2 ❌ but register ✅: verified membership outweighs visibility. Contact via the firm's email or phone |
 | 10 | Lawyer with LinkedIn behind a login | ⚠️ profile in search snippets but unreadable without login | ✅ membership verified | ✅ teaching in 2025 | No signals | **APPROVE** | Unreadable counts as ⚠️, not ❌. 0 ❌ and a single ⚠️ |
+| 11 | Partner at a large firm; a namesake's obituary is among the top results | ✅ active profile | ✅ membership verified | ✅ conference in 2025 | No signals | **APPROVE** | The namesake appears only in the ruled-out namesakes line (profession and city). The obituary appears neither there nor in the Notes |
 
 ### What to check beyond the verdict
 
 - The channel table comes before any narrative text.
 - Every number has a source, and self-reported data is marked as such.
 - The verdict block shows the decision-table row that fired (and, in lead-qualifier, "Soglia applicata", the threshold applied).
-- lead-qualifier-studi always includes the line listing people with the same name that were ruled out.
+- lead-qualifier-studi always includes the line listing people with the same name that were ruled out. In lead-qualifier namesakes do not appear, or at most in one warning line with no personal data.
 - In lead-qualifier-studi the output opens with the "Sintesi" (summary) line, statuses are only ✅, ⚠️ and ❌, the profile table uses the template's fixed values, and when the register is ⚠️ there is a link to check it by hand. If a ✅ register would change the verdict, the agent asks for the check before closing or reports both verdicts.
 - Ruled-out namesakes are described only by profession and city, and no part of the report (Notes included) gives personal data about them. If the user already knows the lead, there is a "Relazione esistente" (existing relationship) line after the summary and the next step is a direct contact. Narrative text goes in the Notes, after the next step.
 - No aggregator or directory is used as the source for a ✅ register.
