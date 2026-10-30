@@ -26,7 +26,7 @@ Nove casi: uno per ogni riga della tabella, i due controlli di ambito dello Step
 
 ### lead-qualifier-studi
 
-Nove casi: uno per ogni riga della tabella, più quello che distingue questa variante dalla base (un solo ⚠️ non blocca l'APPROVE) e quello del piccolo studio con Albo verificato.
+Dieci casi: uno per ogni riga della tabella, più quello che distingue questa variante dalla base (un solo ⚠️ non blocca l'APPROVE), quello del piccolo studio con Albo verificato e quello del LinkedIn trovato ma non leggibile.
 
 | # | Scenario | LinkedIn | Albo / Ordine | Pubblicazioni ed eventi | Reputazione | Atteso | Perché |
 |---|---|---|---|---|---|---|---|
@@ -39,6 +39,7 @@ Nove casi: uno per ogni riga della tabella, più quello che distingue questa var
 | 7 | Avvocata socia di uno studio d'affari | ✅ profilo attivo | ✅ iscrizione verificata | ✅ relatrice a un convegno nel 2025 | Nessun segnale | **APPROVE** | 0 ❌, 0 ⚠️ |
 | 8 | Commercialista in studio associato | ⚠️ solo pagina dello studio | ✅ iscrizione verificata | ✅ articolo su rivista di settore, 2024 | Nessun segnale | **APPROVE** | 0 ❌ e un solo ⚠️, che qui non blocca l'APPROVE |
 | 9 | Piccolo studio di provincia senza presenza online | ❌ né profilo né pagina | ✅ iscrizione verificata | ❌ nessuna traccia | Nessun segnale | **RISERVA** | 2 ❌ ma Albo ✅: l'iscrizione verificata pesa più della visibilità. Contatto via email o telefono dello studio |
+| 10 | Avvocato con LinkedIn dietro login | ⚠️ profilo presente negli snippet ma non leggibile senza login | ✅ iscrizione verificata | ✅ docenza nel 2025 | Nessun segnale | **APPROVE** | Non leggibile vale ⚠️, non ❌. 0 ❌ e un solo ⚠️ |
 
 ### Cosa guardare oltre al verdetto
 
@@ -46,6 +47,7 @@ Nove casi: uno per ogni riga della tabella, più quello che distingue questa var
 - Ogni numero ha una fonte, e i dati auto-dichiarati sono marcati come tali.
 - Il blocco verdetto riporta la riga della tabella di decisione che è scattata (e in lead-qualifier anche "Soglia applicata").
 - In lead-qualifier-studi c'è sempre la riga degli omonimi scartati.
+- In lead-qualifier-studi l'output si apre con la riga "Sintesi", gli stati sono solo ✅, ⚠️ e ❌, i valori della tabella profilo sono quelli fissi del template, e se l'Albo è ⚠️ c'è il link per verificarlo a mano.
 - C'è sempre un next step di una riga.
 
 ---
@@ -72,7 +74,7 @@ Nine cases: one for each row of the table, the two Step 0 scope checks, and the 
 
 ### lead-qualifier-studi
 
-Nine cases: one for each row of the table, plus the one that sets this variant apart from the base skill (a single ⚠️ does not block APPROVE) and the small firm with a verified register entry.
+Ten cases: one for each row of the table, plus the one that sets this variant apart from the base skill (a single ⚠️ does not block APPROVE), the small firm with a verified register entry, and the LinkedIn profile that is found but cannot be read.
 
 | # | Scenario | LinkedIn | Register (Albo / Ordine) | Publications and events | Reputation | Expected | Why |
 |---|---|---|---|---|---|---|---|
@@ -85,6 +87,7 @@ Nine cases: one for each row of the table, plus the one that sets this variant a
 | 7 | Partner at a corporate law firm | ✅ active profile | ✅ membership verified | ✅ conference speaker in 2025 | No signals | **APPROVE** | 0 ❌, 0 ⚠️ |
 | 8 | Accountant at an associated firm | ⚠️ firm page only | ✅ membership verified | ✅ trade journal article, 2024 | No signals | **APPROVE** | 0 ❌ and a single ⚠️, which does not block APPROVE here |
 | 9 | Small provincial firm with no online presence | ❌ no profile, no page | ✅ membership verified | ❌ no trace | No signals | **RISERVA** | 2 ❌ but register ✅: verified membership outweighs visibility. Contact via the firm's email or phone |
+| 10 | Lawyer with LinkedIn behind a login | ⚠️ profile in search snippets but unreadable without login | ✅ membership verified | ✅ teaching in 2025 | No signals | **APPROVE** | Unreadable counts as ⚠️, not ❌. 0 ❌ and a single ⚠️ |
 
 ### What to check beyond the verdict
 
@@ -92,4 +95,5 @@ Nine cases: one for each row of the table, plus the one that sets this variant a
 - Every number has a source, and self-reported data is marked as such.
 - The verdict block shows the decision-table row that fired (and, in lead-qualifier, "Soglia applicata", the threshold applied).
 - lead-qualifier-studi always includes the line listing people with the same name that were ruled out.
+- In lead-qualifier-studi the output opens with the "Sintesi" (summary) line, statuses are only ✅, ⚠️ and ❌, the profile table uses the template's fixed values, and when the register is ⚠️ there is a link to check it by hand.
 - There is always a one-line next step.

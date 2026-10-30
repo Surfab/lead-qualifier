@@ -4,7 +4,7 @@ description: Qualifica un lead che è un professionista iscritto a un Ordine o u
 license: MIT
 metadata:
   author: Fabrizio Quaglio Cotti
-  version: "1.1.0"
+  version: "1.1.1"
 ---
 
 # Lead Qualifier Studi Professionali
@@ -26,6 +26,12 @@ Dato un professionista o uno studio, verifica identità, credibilità e potere d
 | ✅ | Positivo, verificato |
 | ⚠️ | Parziale o incerto |
 | ❌ | Assente o negativo |
+
+Usa solo questi tre stati. Niente etichette aggiuntive come "❌ (parziale)" o "✅ con riserva": la nota sulla qualità del dato va nella colonna Dettaglio.
+
+Distingui sempre tra dato **non trovato** e dato **non leggibile**:
+- non trovato: nessun risultato, nemmeno negli snippet di ricerca → ❌
+- non leggibile: il risultato esiste ma la pagina non si apre (login, modulo di ricerca che non risponde) → ⚠️
 
 ### Tabella di decisione
 
@@ -53,7 +59,7 @@ La tabella non si reinterpreta durante l'analisi.
 
 - Diretto, senza preamboli.
 - Dati prima, interpretazioni dopo. Ogni dato rilevante con la sua fonte.
-- Tabelle e verdetto prima di qualsiasi analisi narrativa.
+- Riga di sintesi, poi tabelle e verdetto, prima di qualsiasi analisi narrativa.
 - Italiano, professionale ma colloquiale.
 - Niente aggettivi valutativi generici ("solido", "impressionante", "notevole"). Usa i dati.
 
@@ -77,13 +83,17 @@ Cerca sempre tutti e tre con lo strumento di ricerca web disponibile, anche se i
 - Query: `[nome] [studio] LinkedIn`, poi `[studio] LinkedIn`
 - ✅ profilo personale con ruolo coerente e attività negli ultimi 12 mesi
 - ⚠️ solo la pagina aziendale dello studio, oppure profilo personale fermo da oltre 12 mesi
-- ❌ né profilo personale né pagina dello studio
-- I profili LinkedIn spesso non si leggono senza login. Usa gli snippet di ricerca e scrivi che il dato è parziale.
+- ⚠️ anche quando profilo o pagina compaiono nei risultati ma non si leggono senza login, e gli snippet non bastano a valutarli
+- ❌ né profilo personale né pagina dello studio, nemmeno negli snippet di ricerca
+- I profili LinkedIn spesso non si leggono senza login. Usa gli snippet di ricerca e scrivi nel Dettaglio che il dato è parziale.
 
 **Albo / Ordine**
-- Query: `[nome] Ordine [categoria] [città]`, poi la ricerca iscritti sul sito dell'Ordine territoriale o sull'albo nazionale della categoria
+- Query: `[nome] Ordine [categoria] [città]`, poi la ricerca iscritti sul sito dell'Ordine territoriale
+- Se il sito dell'Ordine territoriale non risponde, prova il registro nazionale della categoria: per gli avvocati l'albo del Consiglio Nazionale Forense, per i commercialisti l'albo unico del Consiglio Nazionale dei Dottori Commercialisti, per i notai la ricerca del Consiglio Nazionale del Notariato, per i consulenti del lavoro l'albo del loro Consiglio Nazionale
+- Cerca anche `"[nome]" site:[dominio dell'Ordine]`: delibere, elenchi e verbali pubblicati in PDF spesso confermano l'iscrizione
 - ✅ iscrizione verificata su fonte istituzionale. Cariche nel Consiglio o in commissioni dell'Ordine sono un segnale in più
-- ⚠️ iscrizione dichiarata solo dal sito dello studio, con l'albo non consultabile
+- ⚠️ iscrizione dichiarata solo dal sito dello studio, con l'albo non consultabile né a livello territoriale né nazionale
+- Quando l'Albo resta ⚠️, scrivi nell'output il link alla pagina di ricerca iscritti, così l'utente lo verifica a mano in un minuto. Se l'utente conferma l'iscrizione, l'Albo diventa ✅ e ricalcoli il verdetto
 - ❌ iscrizione non trovata sull'albo, oppure sanzioni disciplinari pubbliche
 - Il sito dello studio è fonte auto-dichiarata, l'Ordine è fonte terza. Tienile separate nell'output.
 
@@ -122,11 +132,14 @@ Poi applica la tabella di decisione.
 ### Step 5. Output
 
 Nell'ordine:
-1. Tabella canali
-2. Omonimi scartati (una riga)
-3. Tabella profilo commerciale
-4. Verdetto
-5. Next step (una riga)
+1. Riga di sintesi: `Sintesi: [VERDETTO]. [motivo principale in una frase]`
+2. Tabella canali
+3. Omonimi scartati (una riga)
+4. Tabella profilo commerciale
+5. Verdetto
+6. Next step (una riga)
+
+La riga di sintesi serve a chi legge di fretta. Non sostituisce il blocco Verdetto, che resta con il conteggio dei canali e la regola scattata.
 
 ---
 
@@ -158,6 +171,10 @@ Nell'ordine:
 
 ## Template di output
 
+### Sintesi
+
+Sintesi: [APPROVE / RISERVA / REJECT]. [Motivo principale in una frase.]
+
 ### Tabella canali
 
 | Canale | Stato | Dettaglio |
@@ -169,6 +186,8 @@ Nell'ordine:
 Omonimi scartati: [n, con descrizione di una parola ciascuno]
 
 ### Tabella profilo commerciale
+
+Dove la tabella indica valori fissi (per esempio Alta / Media / Bassa), usa esattamente uno di quei valori, senza valori intermedi come "Media-alta". Le sfumature vanno nella motivazione.
 
 | Aspetto | Segnale |
 |---|---|
@@ -198,6 +217,8 @@ Regola scattata: [riga della tabella di decisione]
 ## Esempio completo (lead fittizio, dati inventati)
 
 Lead: commercialista in uno studio associato con trent'anni di attività.
+
+Sintesi: RISERVA. Credenziali verificate dall'Ordine, ma potere di spesa non chiaro.
 
 | Canale | Stato | Dettaglio |
 |---|---|---|

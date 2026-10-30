@@ -8,6 +8,16 @@
 
 I titoli indicano la versione del plugin. Le versioni delle singole skill sono nel testo.
 
+### Plugin 1.3.1 (2026-10-30)
+
+lead-qualifier-studi 1.1.1, dopo una prova su uno studio legale reale:
+
+- **Solo tre stati.** Niente etichette come "❌ (parziale)". Dato non trovato, nemmeno negli snippet, vale ❌. Dato trovato ma non leggibile (login, modulo che non risponde) vale ⚠️.
+- **Albo più facile da verificare.** Se l'Ordine territoriale non risponde, la skill prova il registro nazionale della categoria e i PDF pubblicati sul sito dell'Ordine. Se l'Albo resta ⚠️, l'output dà all'utente il link per controllarlo a mano; con la conferma l'Albo diventa ✅ e il verdetto si ricalcola.
+- **Valori fissi nella tabella profilo.** Niente valori intermedi come "Media-alta".
+- **Riga di sintesi in apertura.** L'output parte con `Sintesi: [VERDETTO]. [motivo]`, poi le tabelle. Il blocco Verdetto completo resta.
+- **Casi di test.** Nuovo caso del LinkedIn trovato ma non leggibile.
+
 ### Plugin 1.3.0 (2026-10-30)
 
 lead-qualifier 1.3.0:
@@ -58,6 +68,16 @@ Cambiamenti rispetto alla 1.0, usata in privato:
 ## English
 
 Headings show the plugin version. Individual skill versions are given in the text.
+
+### Plugin 1.3.1 (2026-10-30)
+
+lead-qualifier-studi 1.1.1, after a trial on a real law firm:
+
+- **Only three statuses.** No labels such as "❌ (partial)". Data not found, not even in search snippets, is ❌. Data found but unreadable (login wall, search form not responding) is ⚠️.
+- **Register easier to verify.** If the local Ordine does not respond, the skill tries the national register of the profession and PDFs published on the Ordine's website. If the register stays ⚠️, the output gives the user the link to check it by hand; once confirmed, the register becomes ✅ and the verdict is recalculated.
+- **Fixed values in the profile table.** No in-between values such as "Medium-high".
+- **Summary line first.** The output opens with `Sintesi: [VERDICT]. [reason]`, then the tables. The full Verdict block stays.
+- **Test cases.** New case for a LinkedIn profile that is found but cannot be read.
 
 ### Plugin 1.3.0 (2026-10-30)
 
