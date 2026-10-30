@@ -1,17 +1,17 @@
 ---
 name: lead-qualifier-studi
-description: Qualifica un lead che è un professionista iscritto a un Ordine o uno studio professionale (commercialisti, avvocati, notai, consulenti del lavoro) prima di un contatto commerciale. Verifica LinkedIn, iscrizione all'Albo e pubblicazioni o eventi, controlla la reputazione e restituisce un verdetto APPROVE, RISERVA o REJECT con fonti e un next step. Usala al posto di lead-qualifier per questi profili.
+description: Qualifica un lead che è un professionista iscritto a un Ordine o uno studio professionale (commercialisti, avvocati, notai, consulenti del lavoro) prima di un contatto commerciale. Verifica LinkedIn, iscrizione all'Albo e pubblicazioni o eventi, controlla la reputazione e restituisce un verdetto APPROVE, RISERVA o REJECT con fonti e un next step. Usala al posto di lead-qualifier per questi profili. Also use it when the user asks in English to qualify or vet an accountant, lawyer, notary or professional firm before sales outreach, for example "qualify this law firm" or "check this accountant before I contact them".
 license: MIT
 metadata:
   author: Fabrizio Quaglio Cotti
-  version: "1.0.0"
+  version: "1.1.0"
 ---
 
 # Lead Qualifier Studi Professionali
 
 Variante di `lead-qualifier` per professionisti iscritti a un Ordine (commercialisti, avvocati, notai, consulenti del lavoro) e per gli studi associati.
 
-La versione base misura X, YouTube e Trustpilot. Un professionista di studio quasi mai presidia quei canali, quindi applicata a questo segmento la regola scarta anche i lead buoni. Qui i tre canali obbligatori sono: **LinkedIn**, **Albo/Ordine**, **Pubblicazioni ed eventi**.
+La versione base misura social, YouTube e Trustpilot. Un professionista di studio quasi mai presidia quei canali, quindi applicata a questo segmento la regola scarta anche i lead buoni. Qui i tre canali obbligatori sono: **LinkedIn**, **Albo/Ordine**, **Pubblicazioni ed eventi**.
 
 ---
 
@@ -34,14 +34,16 @@ Applica la prima riga che corrisponde.
 | Condizione | Verdetto |
 |---|---|
 | Albo ❌ (iscrizione non trovata sull'albo, oppure sanzione disciplinare pubblica) | **REJECT** immediato, a prescindere dagli altri canali |
-| 2 o più canali ❌ | **REJECT** |
+| 2 canali ❌ e Albo ⚠️ | **REJECT** |
 | Segnali critici da fonti terze (Step 3) | **REJECT** |
-| 1 canale ❌ | **RISERVA** |
+| 1 o 2 canali ❌ | **RISERVA** |
 | 0 canali ❌ e 2 o più ⚠️ | **RISERVA** |
 | 0 canali ❌, al massimo 1 ⚠️, segnali minori | **RISERVA** |
 | 0 canali ❌, al massimo 1 ⚠️, nessun segnale negativo | **APPROVE** |
 
 A differenza della versione base, qui un solo ⚠️ non blocca l'APPROVE: per uno studio è normale avere, per esempio, solo la pagina LinkedIn dello studio e non quella personale.
+
+L'Albo pesa più della visibilità. Un professionista con iscrizione verificata ma senza LinkedIn e senza pubblicazioni è comune negli studi piccoli: è un lead reale, da contattare per email o telefono dello studio, quindi RISERVA e non REJECT. Il REJECT scatta solo se manca anche la verifica dell'iscrizione.
 
 La tabella non si reinterpreta durante l'analisi.
 
@@ -135,7 +137,7 @@ Nell'ordine:
 - Distingui la fonte auto-dichiarata (sito dello studio) dalla fonte terza (Ordine, stampa, organizzatori di eventi).
 - Indica sempre se il lead decide il budget o se serve arrivare a un socio.
 - Lega il next step alla nicchia del professionista con un caso d'uso concreto sul suo lavoro (es. analisi documentale per la revisione, ricerca normativa, bozze di pareri). Niente pitch generico.
-- Canale di contatto preferito: LinkedIn (personale o dello studio) o email professionale pubblicata dallo studio.
+- Canale di contatto preferito: LinkedIn (personale o dello studio) o email professionale pubblicata dallo studio. Se LinkedIn è ❌, usa email o telefono dello studio.
 
 **Da evitare**
 - Non scambiare un omonimo per il lead.
@@ -150,6 +152,7 @@ Nell'ordine:
 - Usa solo informazioni pubbliche e professionali: ruolo, studio, iscrizione, competenze, pubblicazioni.
 - Non riportare dati personali non professionali: data di nascita, indirizzo di casa, famiglia, salute, opinioni politiche o religiose.
 - Il verdetto dice se investire tempo in un contatto. Non è un giudizio sulla persona.
+- Nel primo contatto, chi usa la skill deve dire al lead da dove ha preso i suoi dati (GDPR, art. 14). La base giuridica tipica è il legittimo interesse.
 
 ---
 
@@ -184,7 +187,7 @@ VERDETTO: [APPROVE / RISERVA / REJECT]
 
 Motivazione: [1-2 righe]
 
-Canali: [n ❌, n ⚠️]
+Canali ❌: [n su 3] · Canali ⚠️: [n su 3]
 Regola scattata: [riga della tabella di decisione]
 ```
 
@@ -219,7 +222,7 @@ VERDETTO: RISERVA
 
 Motivazione: nessun canale negativo, due parziali. Credenziali verificate da fonte terza, potere di spesa non chiaro.
 
-Canali: 0 ❌, 2 ⚠️
+Canali ❌: 0 su 3 · Canali ⚠️: 2 su 3
 Regola scattata: 0 canali ❌ e 2 o più ⚠️ → RISERVA
 ```
 

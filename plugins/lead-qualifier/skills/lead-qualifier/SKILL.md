@@ -1,10 +1,10 @@
 ---
 name: lead-qualifier
-description: Qualifica un potenziale cliente (lead) prima del primo contatto commerciale. Verifica la presenza pubblica su tre canali obbligatori (Twitter/X, YouTube, Trustpilot), controlla la reputazione online e restituisce un verdetto APPROVE, RISERVA o REJECT con fonti e un next step. Usala quando l'utente chiede di analizzare un potenziale cliente, valutare un lead o verificare una persona o un'azienda prima di contattarla, per esempio "valuta questo lead" o "controlla [nome] prima che lo contatti". Also use it when the user asks in English to qualify a lead, vet a prospect or check a person or company before sales outreach, for example "qualify this lead" or "is this prospect worth contacting". Non usarla per ricerche generiche su persone o aziende senza un contesto commerciale.
+description: Qualifica un potenziale cliente (lead) prima del primo contatto commerciale. Verifica la presenza pubblica su tre canali obbligatori (social principale tra X, Instagram, TikTok e LinkedIn, poi YouTube e Trustpilot), controlla la reputazione online e restituisce un verdetto APPROVE, RISERVA o REJECT con fonti e un next step. Usala quando l'utente chiede di analizzare un potenziale cliente, valutare un lead o verificare una persona o un'azienda prima di contattarla, per esempio "valuta questo lead" o "controlla [nome] prima che lo contatti". Also use it when the user asks in English to qualify a lead, vet a prospect or check a person or company before sales outreach, for example "qualify this lead" or "is this prospect worth contacting". Non usarla per ricerche generiche su persone o aziende senza un contesto commerciale.
 license: MIT
 metadata:
   author: Fabrizio Quaglio Cotti
-  version: "1.2.1"
+  version: "1.3.0"
 ---
 
 # Lead Qualifier
@@ -19,7 +19,7 @@ Dato il nome di una persona o di un'azienda, verifica presenza pubblica, credibi
 
 La regola centrale:
 
-> **Se 2 o più dei tre canali obbligatori sono ❌ (assenti o con segnali negativi), il verdetto è REJECT immediato. Nessuna eccezione.**
+> **Se i canali obbligatori ❌ (assenti o con segnali negativi) raggiungono la soglia, il verdetto è REJECT immediato. Nessuna eccezione. La soglia di default è 2.**
 
 ### Stati dei canali
 
@@ -31,18 +31,20 @@ La regola centrale:
 
 ### Tabella di decisione
 
-Applica la prima riga che corrisponde.
+Applica la prima riga che corrisponde. S è la soglia (default 2).
 
 | Canali ❌ | Canali ⚠️ | Reputazione (Step 3) | Verdetto |
 |---|---|---|---|
-| 2 o più | qualsiasi | non si verifica | **REJECT** |
-| 0 o 1 | qualsiasi | segnali critici | **REJECT** |
-| 1 | qualsiasi | nessun segnale critico | **RISERVA** |
+| S o più | qualsiasi | non si verifica | **REJECT** |
+| meno di S | qualsiasi | segnali critici | **REJECT** |
+| almeno 1, meno di S | qualsiasi | nessun segnale critico | **RISERVA** |
 | 0 | 1 o più | nessun segnale critico | **RISERVA** |
 | 0 | 0 | segnali minori | **RISERVA** |
 | 0 | 0 | nessun segnale negativo | **APPROVE** |
 
-La soglia di default è **2 canali ❌**. Si può cambiare, ma va dichiarata nell'output ("Soglia applicata") e non si reinterpreta durante l'analisi.
+Con la soglia di default (S = 2) le righe si leggono così: 2 o più ❌ → REJECT; 1 ❌ → RISERVA, salvo segnali critici.
+
+La soglia si può cambiare solo prima dell'analisi, su richiesta dell'utente (per esempio S = 1 per un filtro più severo, S = 3 per uno più largo). Va dichiarata nell'output ("Soglia applicata") e non si reinterpreta durante l'analisi.
 
 ---
 
@@ -72,18 +74,21 @@ Per gli altri casi fuori calibrazione:
 
 Fai sempre tutte e tre le ricerche con lo strumento di ricerca web disponibile. Non saltarne nessuna, anche se il lead sembra ovviamente positivo o negativo. Non usare dati memorizzati e non dare per scontato che un profilo esista.
 
-**Twitter/X**
-- Query: `[nome] Twitter` oppure `[nome] X.com`
+**Social principale**
+- Cerca il lead su X, Instagram, TikTok e LinkedIn. Il social principale è quello con più follower attivi: valuta solo quello e cita gli altri come segnale in più.
+- Query: `[nome] Instagram`, `[nome] TikTok`, `[nome] LinkedIn`, `[nome] X.com`
 - Verifica: profilo, follower, frequenza di pubblicazione, tono
 - ✅ profilo attivo, oltre 10k follower, contenuti coerenti con il posizionamento dichiarato
 - ⚠️ profilo attivo ma sotto i 10k follower, oppure dati non verificabili
-- ❌ profilo assente, inattivo da oltre 6 mesi, contenuti spam o controversi
+- ❌ nessun profilo sui quattro social, oppure tutti inattivi da oltre 6 mesi, oppure contenuti spam o controversi sul social principale
+- Un founder B2B attivo solo su LinkedIn ha un social principale valido: non serve che sia anche su X.
 
 **YouTube**
 - Query: `[nome] YouTube channel`
 - Verifica: canale, iscritti, frequenza di upload
-- ✅ canale attivo, iscritti verificabili, contenuti coerenti
-- ❌ canale assente o abbandonato, commenti negativi sistematici
+- ✅ canale attivo, oltre 1.000 iscritti, contenuti coerenti
+- ⚠️ canale attivo ma sotto i 1.000 iscritti o con upload irregolari, oppure canale assente in un business dove il video non è un canale atteso (vedi Sezione 6)
+- ❌ canale abbandonato da oltre 6 mesi, commenti negativi sistematici, oppure canale assente in un business dove il video è atteso
 
 **Trustpilot**
 - Query: `[nome] OR [azienda] Trustpilot`
@@ -94,13 +99,14 @@ Fai sempre tutte e tre le ricerche con lo strumento di ricerca web disponibile. 
 
 ### Step 2. Applica la regola di squalifica
 
-Conta i canali ❌ e quelli ⚠️. Se i ❌ sono 2 o più, emetti **REJECT** subito, salta Step 3 e 4 e vai all'output.
+Conta i canali ❌ e quelli ⚠️. Se i ❌ raggiungono la soglia (default 2), emetti **REJECT** subito, salta Step 3 e 4 e vai all'output.
 
 ### Step 3. Ricerca reputazionale allargata
 
 Solo se non c'è già un REJECT.
 
-- Query: `[nome] controversy OR scam OR complaints OR negative reviews [anno corrente]`
+- Query: `[nome] controversy OR scam OR complaints OR negative reviews`, senza filtro di data: le truffe più documentate sono spesso vecchie
+- Ripeti la stessa query con l'anno corrente per i segnali recenti
 - Query: `[nome] [azienda principale] criticism`
 - Per lead italiani: `[nome] truffa OR lamentele OR recensioni negative`
 - Verifica Reddit, Hacker News e i forum di settore
@@ -148,7 +154,7 @@ Produci nell'ordine:
 
 **Da fare**
 - Cerca sempre tutti e tre i canali, anche quando il verdetto sembra già chiaro.
-- Classifica Trustpilot come ⚠️ quando il tipo di business non genera recensioni consumer, e spiega perché.
+- Classifica Trustpilot e YouTube come ⚠️ quando il tipo di business non li prevede, e spiega perché.
 - Cita la fonte di ogni dato rilevante: follower, acquisizioni, fatturato.
 - Emetti REJECT senza attenuanti quando scatta la regola. Niente "però ha punti positivi".
 - Registra l'assenza di segnali negativi. "Nessun risultato negativo trovato" è un dato, non un vuoto.
@@ -169,20 +175,23 @@ Produci nell'ordine:
 - Usa solo informazioni pubbliche e pertinenti a una decisione commerciale.
 - Non raccogliere dati personali estranei al business: famiglia, salute, opinioni politiche o religiose, indirizzo privato.
 - Il verdetto dice se investire tempo in un contatto. Non è un giudizio sulla persona.
+- Nel primo contatto, chi usa la skill deve dire al lead da dove ha preso i suoi dati (GDPR, art. 14). La base giuridica tipica è il legittimo interesse.
 
 ---
 
 ## 6. Gestione delle fonti
 
-### Trustpilot assente
+### Trustpilot o YouTube assenti
 
-Non è automaticamente un segnale negativo. Dipende dal tipo di business:
+Non sono automaticamente un segnale negativo. Dipende dal tipo di business:
 
-| Tipo di business | Trustpilot assente |
-|---|---|
-| E-commerce, SaaS consumer, servizi al consumatore | ❌ Segnale negativo |
-| Agenzia B2B, holding, personal brand, consulente | ⚠️ Non applicabile |
-| Startup early stage | ⚠️ Non applicabile, troppo presto |
+| Tipo di business | Trustpilot assente | YouTube assente |
+|---|---|---|
+| E-commerce, SaaS consumer, servizi al consumatore | ❌ Segnale negativo | ❌ Segnale negativo |
+| Creator o educator che vende corsi, community o infoprodotti | ⚠️ Non applicabile, ma cerca recensioni del corso su Google, Udemy o Skool: lamentele ricorrenti lì valgono ❌ | ❌ Segnale negativo |
+| Agenzia B2B, holding, consulente, founder B2B | ⚠️ Non applicabile | ⚠️ Non applicabile |
+| Personal brand senza prodotti venduti al pubblico | ⚠️ Non applicabile | ⚠️ Non applicabile se il social principale è ✅, altrimenti ❌ |
+| Startup early stage | ⚠️ Non applicabile, troppo presto | ⚠️ Non applicabile, troppo presto |
 
 In ogni caso segnala l'assenza e spiega la classificazione scelta.
 
@@ -200,11 +209,12 @@ Tieni separati i dati dichiarati dal lead da quelli confermati da fonti indipend
 
 Non presentarli con lo stesso livello di affidabilità.
 
-### Twitter/X inaccessibile
+### Social inaccessibile
 
-Se la pagina non si carica:
+Se la pagina non si carica (succede spesso con Instagram, LinkedIn e X senza login):
+- usa gli snippet dei risultati di ricerca;
 - cerca dati aggregati su SocialBlade o Viewstats;
-- cerca `[nome] twitter followers [anno]` per fonti secondarie.
+- cerca `[nome] [social] followers [anno]` per fonti secondarie.
 
 Se nessuna fonte è disponibile, classifica come ⚠️ con la nota "dati follower non verificabili direttamente".
 
@@ -216,7 +226,7 @@ Se nessuna fonte è disponibile, classifica come ⚠️ con la nota "dati follow
 
 | Canale | Stato | Dettaglio |
 |---|---|---|
-| Twitter/X | ✅ / ⚠️ / ❌ | Follower, frequenza, fonte |
+| Social principale ([quale]) | ✅ / ⚠️ / ❌ | Follower, frequenza, fonte. Altri social attivi tra parentesi |
 | YouTube | ✅ / ⚠️ / ❌ | Iscritti, frequenza, fonte |
 | Trustpilot | ✅ / ⚠️ / ❌ | Punteggio, recensioni, o motivo dell'assenza |
 
@@ -241,7 +251,7 @@ VERDETTO: [APPROVE / RISERVA / REJECT]
 Motivazione: [1-2 righe]
 
 Canali ❌: [n su 3] · Canali ⚠️: [n su 3]
-Soglia applicata: 2
+Soglia applicata: [S, default 2]
 Regola scattata: [riga della tabella di decisione, oppure "nessuna"]
 ```
 
@@ -255,7 +265,7 @@ Lead: Acme Academy, società che vende formazione AI a team aziendali.
 
 | Canale | Stato | Dettaglio |
 |---|---|---|
-| Twitter/X | ✅ | 48k follower su @acme_esempio, 1-2 post al giorno (fonte: x.com) |
+| Social principale (X) | ✅ | 48k follower su @acme_esempio, 1-2 post al giorno (fonte: x.com). Attiva anche su LinkedIn |
 | YouTube | ✅ | 120k iscritti, 2 video a settimana negli ultimi 6 mesi (fonte: youtube.com) |
 | Trustpilot | ⚠️ | Pagina assente. Acme vende a team aziendali (B2B) e non genera recensioni consumer |
 
@@ -276,7 +286,7 @@ Nessun segnale negativo. Lead attivo, da approcciare con una proposta mirata.
 
 Canali ❌: 0 su 3 · Canali ⚠️: 1 su 3
 Soglia applicata: 2
-Regola scattata: 0 ❌ e almeno un ⚠️ → RISERVA
+Regola scattata: 0 ❌ e 1 o più ⚠️ → RISERVA
 ```
 
 **Next step:** Contatto via X (@acme_esempio) dopo aver scelto un angolo preciso, per esempio l'automazione dei materiali dei corsi per i team clienti. Non un pitch generico.

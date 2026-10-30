@@ -6,18 +6,40 @@
 
 ## Italiano
 
-### lead-qualifier 1.2.1 (2026-10-15)
+I titoli indicano la versione del plugin. Le versioni delle singole skill sono nel testo.
+
+### Plugin 1.3.0 (2026-10-30)
+
+lead-qualifier 1.3.0:
+
+- **Social principale al posto di Twitter/X.** Il primo canale è il social dove il lead è più attivo tra X, Instagram, TikTok e LinkedIn. Prima un creator attivo solo su Instagram, o un founder B2B attivo solo su LinkedIn, prendeva ❌ e rischiava un REJECT falso.
+- **YouTube ha lo stato ⚠️.** Canale piccolo (sotto 1.000 iscritti) o assente in un business dove il video non è atteso. La tabella della Sezione 6 ora copre sia Trustpilot sia YouTube, con una riga per chi vende corsi e infoprodotti.
+- **Tabella di decisione scritta in funzione della soglia.** Le righe usano la soglia S invece del numero 2, così cambiare la soglia non le rende contraddittorie. La soglia si fissa prima dell'analisi.
+- **Reputazione senza filtro di data.** La query reputazionale gira prima senza anno, poi con l'anno corrente.
+
+lead-qualifier-studi 1.1.0:
+
+- **L'Albo pesa più della visibilità.** Con l'iscrizione verificata, LinkedIn ❌ e pubblicazioni ❌ danno RISERVA e non più REJECT. Il REJECT resta quando manca anche la verifica dell'Albo.
+- **Frasi di attivazione in inglese**, come in lead-qualifier.
+- **Blocco verdetto uniforme** con quello di lead-qualifier.
+
+Entrambe:
+
+- **Uso responsabile.** Una riga sull'informativa al primo contatto (GDPR, art. 14).
+- **Casi di test.** Nuovo caso del founder B2B solo su LinkedIn; nuovo caso del piccolo studio con Albo verificato; caso 2 di lead-qualifier-studi riscritto per la nuova regola.
+
+### Plugin 1.2.1 (2026-10-15)
 
 - **Attivazione anche in inglese.** La descrizione di lead-qualifier include frasi di attivazione in inglese, così la skill parte anche quando l'utente scrive in inglese. Le istruzioni restano in italiano.
 
-### lead-qualifier 1.2.0 (2026-10-15)
+### Plugin 1.2.0 (2026-10-15)
 
 - **Nuova skill lead-qualifier-studi 1.0.0.** Variante per professionisti iscritti a un Ordine e studi professionali. Canali: LinkedIn, Albo/Ordine, pubblicazioni ed eventi, con disambiguazione degli omonimi.
 - **Rispetto alla versione privata di lead-qualifier-studi:** tabella di decisione ordinata (vale la prima riga), reputazione che pesa sul verdetto, Albo ⚠️ distinto da ❌ (albo non consultabile contro iscrizione non trovata), contenzioso considerato solo quando lo studio è parte in causa, esempio fittizio, testo indipendente dall'autore e dallo strumento di ricerca.
 - **lead-qualifier 1.2.0.** Lo Step 0 rimanda a lead-qualifier-studi quando il lead è un professionista iscritto a un Ordine.
 - **Casi di test.** Otto casi per lead-qualifier-studi. Per lead-qualifier aggiunti il caso dei segnali minori, che mancava, e quello del passaggio a lead-qualifier-studi.
 
-### lead-qualifier 1.1.0 (2026-10-15), prima versione pubblica
+### Plugin 1.1.0 (2026-10-15), prima versione pubblica
 
 Cambiamenti rispetto alla 1.0, usata in privato:
 
@@ -35,18 +57,40 @@ Cambiamenti rispetto alla 1.0, usata in privato:
 
 ## English
 
-### lead-qualifier 1.2.1 (2026-10-15)
+Headings show the plugin version. Individual skill versions are given in the text.
+
+### Plugin 1.3.0 (2026-10-30)
+
+lead-qualifier 1.3.0:
+
+- **Main social instead of Twitter/X.** The first channel is the social network where the lead is most active, among X, Instagram, TikTok and LinkedIn. Before, a creator active only on Instagram, or a B2B founder active only on LinkedIn, got ❌ and risked a false REJECT.
+- **YouTube gets a ⚠️ status.** A small channel (under 1,000 subscribers), or no channel in a business where video is not expected. The Section 6 table now covers both Trustpilot and YouTube, with a row for sellers of courses and info-products.
+- **Decision table written in terms of the threshold.** The rows use the threshold S instead of the number 2, so changing the threshold no longer makes them contradictory. The threshold is set before the analysis.
+- **Reputation search without a date filter.** The reputation query runs first without a year, then with the current year.
+
+lead-qualifier-studi 1.1.0:
+
+- **The register outweighs visibility.** With verified membership, LinkedIn ❌ and publications ❌ now give RISERVA instead of REJECT. REJECT still applies when the register cannot be verified either.
+- **English trigger phrases**, as in lead-qualifier.
+- **Verdict block aligned** with lead-qualifier.
+
+Both:
+
+- **Responsible use.** One line on informing the lead at first contact (GDPR, Art. 14).
+- **Test cases.** New case for the B2B founder active only on LinkedIn; new case for the small firm with verified membership; lead-qualifier-studi case 2 rewritten for the new rule.
+
+### Plugin 1.2.1 (2026-10-15)
 
 - **English triggers.** The lead-qualifier description now includes English trigger phrases, so the skill also activates when the user writes in English. The instructions stay in Italian.
 
-### lead-qualifier 1.2.0 (2026-10-15)
+### Plugin 1.2.0 (2026-10-15)
 
 - **New skill: lead-qualifier-studi 1.0.0.** A variant for members of professional bodies (Ordini) and professional firms. Channels: LinkedIn, professional register (Albo/Ordine), publications and events, with disambiguation of people with the same name.
 - **Compared with the private version of lead-qualifier-studi:** ordered decision table (the first matching row wins), reputation affects the verdict, register ⚠️ separated from ❌ (register unavailable versus membership not found), litigation counted only when the firm itself is a party, fictional example, text independent of the author and of the search tool.
 - **lead-qualifier 1.2.0.** Step 0 hands over to lead-qualifier-studi when the lead is a member of a professional body.
 - **Test cases.** Eight cases for lead-qualifier-studi. For lead-qualifier, added the missing minor-signals case and the hand-over case.
 
-### lead-qualifier 1.1.0 (2026-10-15), first public release
+### Plugin 1.1.0 (2026-10-15), first public release
 
 Changes from 1.0, which was used privately:
 
