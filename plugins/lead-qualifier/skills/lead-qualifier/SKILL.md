@@ -4,7 +4,7 @@ description: Qualifica un potenziale cliente (lead) prima del primo contatto com
 license: MIT
 metadata:
   author: Fabrizio Quaglio Cotti
-  version: "1.3.0"
+  version: "1.3.1"
 ---
 
 # Lead Qualifier
@@ -73,6 +73,12 @@ Per gli altri casi fuori calibrazione:
 ### Step 1. Cerca sui tre canali obbligatori
 
 Fai sempre tutte e tre le ricerche con lo strumento di ricerca web disponibile. Non saltarne nessuna, anche se il lead sembra ovviamente positivo o negativo. Non usare dati memorizzati e non dare per scontato che un profilo esista.
+
+**Omonimi.** Nomi comuni producono omonimi. Ancora l'identità a tre elementi: **azienda o progetto principale, handle sui social, area geografica**.
+- Se l'utente fornisce un link (sito, profilo social), usalo come punto di ancoraggio.
+- Scarta ogni risultato che non combacia su almeno due dei tre elementi.
+- Degli omonimi scartati non riportare nulla: niente nomi completi e nessun dato personale, in nessuna parte del report. Sono persone estranee alla decisione commerciale.
+- Se un omonimo crea confusione nei risultati, basta una riga senza dati personali (es. "Attenzione: un omonimo, attore, compare spesso nei risultati e non è il lead").
 
 **Social principale**
 - Cerca il lead su X, Instagram, TikTok e LinkedIn. Il social principale è quello con più follower attivi: valuta solo quello e cita gli altri come segnale in più.
@@ -161,6 +167,8 @@ Produci nell'ordine:
 - Chiudi sempre con un next step concreto: canale di contatto, momento, angolo da usare.
 
 **Da evitare**
+- Non scambiare un omonimo per il lead.
+- Non riportare in nessuna parte del report dati personali di omonimi o di altre persone estranee al lead: decesso, vicende private, salute, famiglia.
 - Non gonfiare i segnali positivi per compensare quelli mancanti. Due canali forti e Trustpilot assente restano un lead con un canale mancante.
 - Non reinterpretare la soglia durante l'analisi.
 - Non confondere ⚠️ con ✅.
